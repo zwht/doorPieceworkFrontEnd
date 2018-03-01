@@ -1,0 +1,154 @@
+<div class="ticketPrint viewBox">
+  <div class="zwSearch">
+    <div class="right">
+      <essence-ng2-print
+        [mode]="'popup'"
+        [popTitle]="''"
+        [btnText]="'打印'"
+        [btnClass]="{'btn': true, 'btn-info': true}"
+        [printHTML]="print_div"
+        [printStyle]="printStyle"
+        [printCSS]="printCSS"
+        [showBtn]="printBtnBoolean"
+        (click)="beforePrint()"
+        (printComplete)="printComplete()">
+      </essence-ng2-print>
+    </div>
+  </div>
+  <div class="tableBox viewMain" #print_div>
+    <h1 style="text-align: center; line-height: 40px;
+     font-size: 20px; font-weight: bold;">{{ticket
+      .brandId==1?'川峰':'御驰'}}木门生产流程单</h1>
+    <table cellspacing="0">
+      <tr>
+        <td colspan="2">经销商</td>
+        <td>
+          <b>{{ticket.dealersId}}</b>
+        </td>
+
+        <td>品牌名称</td>
+        <td>
+          <b>{{ticket.brandId==1?'川峰门业':'御驰门业'}}</b>
+        </td>
+
+        <td>订单编号</td>
+        <td colspan="5">
+          <b>{{ticket.name}}</b>
+        </td>
+      </tr>
+      <tr>
+        <td colspan="2">地址</td>
+        <td colspan="3">
+          <b>{{ticket.address}}</b>
+        </td>
+
+        <td>订货日期</td>
+        <td colspan="2">
+          <b>{{ticket.startTime | date:'yyyy-MM-dd'}}</b>
+        </td>
+        <td>交货日期</td>
+        <td colspan="2">
+          <b>{{ticket.endTime | date:'yyyy-MM-dd'}}</b>
+        </td>
+      </tr>
+      <tr>
+        <td rowspan="2">序号</td>
+        <td rowspan="2">型号</td>
+
+        <td>洞口尺寸</td>
+        <td>门扇尺寸</td>
+
+        <td rowspan="2">立板尺寸</td>
+        <td rowspan="2">顶板尺寸</td>
+        <td rowspan="2">颜色</td>
+        <td rowspan="2">线条款式</td>
+        <td rowspan="2">线条数量</td>
+        <td rowspan="2">备注</td>
+      </tr>
+      <tr>
+        <td>
+          <span>高</span>
+          <span>宽</span>
+          <span>厚</span>
+        </td>
+        <td>
+          <span>高</span>
+          <span>宽</span>
+        </td>
+      </tr>
+      <tr *ngFor="let item of productList let i=index">
+        <td>{{i+1}}</td>
+        <td class="doorName">
+          <b>{{item.doorId}}</b>
+        </td>
+        <td class="input3">
+          <b>{{item.coverWidth}}</b>
+          *
+          <b>{{item.coverHeight}}</b>
+          *
+          <b>{{item.coverDepth}}</b>
+        </td>
+        <td class="input3">
+          <b>{{item.width}}</b>
+          *
+          <b>{{item.height}}</b>
+          =
+          <b>{{item.sum}}</b>
+        </td>
+        <td class="input3">
+          <b>{{item.lbWidth}}</b>
+          *
+          <b>{{item.lbHeight}}</b>
+          =
+          <b>{{item.lbSum}}</b>
+        </td>
+        <td class="input3">
+          <b>{{item.dbWidth}}</b>
+          *
+          <b>{{item.dbHeight}}</b>
+          =
+          <b>{{item.dbSum}}</b>
+        </td>
+        <td>
+          <b>{{item.colorId}}</b>
+        </td>
+        <td>
+          <b>{{item.lineId}}</b>
+        </td>
+        <td class="input2">
+          <b>{{item.lineLength}}</b>
+          =
+          <b>{{item.lineSum}}</b>
+        </td>
+        <td>
+          <b>{{item.mark}}</b>
+        </td>
+      </tr>
+      <tr>
+        <td>总计：</td>
+        <td colspan="11" class="statistics">
+          门扇：
+          <b>{{ticket.sumDoor}}</b>
+          <i>个</i>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;套板：
+          <b>{{ticket.sumTaoban}}</b>
+          <i>块</i>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;线条：
+          <b>{{ticket.sumLine}}</b>
+          <i>支</i>
+        </td>
+      </tr>
+    </table>
+    <br>
+    <table>
+      <tr *ngFor="let obj of gxList let i=index">
+        <td *ngFor="let item of obj let j=index" class="fk">
+          <div>{{item.name}}({{item.price}}元)</div>
+          <div style="height: 20px; width: 100%;">
+            <b>{{item.userId}}</b>
+          </div>
+        </td>
+      </tr>
+    </table>
+  </div>
+</div>

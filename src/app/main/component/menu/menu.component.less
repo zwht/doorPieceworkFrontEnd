@@ -1,0 +1,61 @@
+@import "../../../../assets/css/themes/default";
+.menuCpl{ height: 100%; display: flex;flex-flow: row wrap;
+  >.header{ height: 50px; width: 100%; background: @color1;
+    line-height: 50px;font-size: 20px;
+    .logo{ text-align: center; width: 200px; position: absolute; height: 50px;
+      left: 0; top:0;
+    }
+    .right{ position: absolute; right: 20px; top:10px; line-height: 30px;
+      /deep/.el-dropdown{ color: #fff;}
+      /deep/.el-icon-caret-bottom{ display: none;}
+    }
+    .topMenu{ padding: 0 200px;}
+  }
+  >.leftMenu{ width: 200px; background: @color1;
+    height: 100%;/*写给不支持calc()的浏览器*/
+    height:-moz-calc(~"100% - 50px");
+    height:-webkit-calc(~"100% - 50px");
+    height: calc(~"100% - 50px");
+    overflow-y: auto;
+    >li{
+      >span{ display: inline-block;padding:0 15px; line-height: 40px;
+        background: darken(@color1,10%); width: 100%; cursor: pointer;
+        .icon{ float: right;}
+        &:hover{ background: darken(@color1,10%);}
+      }
+      &.active.noChild>span{
+        background: @primary;
+      }
+      &.show{ }
+    }
+    .child{overflow: hidden; background: #c00; display: block; position: relative;
+      transition: height 1s; -moz-transition: height 1s;
+      -webkit-transition: height 1s; -o-transition: height 1s;
+      li{
+        >span{display: inline-block;padding-left: 40px; line-height: 34px;
+          background: @color1; width: 100%; cursor: pointer;
+        }
+        &.active{
+          >span{background: @primary;}
+        }
+      }
+    }
+  }
+  >.mainBox {
+    /*background: url(../../../../assets/images/sky-bg.jpg) no-repeat 50%;
+    background-size: cover;*/
+    background: #f1f1f1;
+    height: 100%; /*写给不支持calc()的浏览器*/
+    height: -moz-calc(~"100% - 50px");
+    height: -webkit-calc(~"100% - 50px");
+    height: calc(~"100% - 50px");
+    width: 100%; /*写给不支持calc()的浏览器*/
+    width: -moz-calc(~"100% - 200px");
+    width: -webkit-calc(~"100% - 200px");
+    width: calc(~"100% - 200px");
+    overflow-y: auto;
+  }
+}
+
+
+

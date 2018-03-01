@@ -1,0 +1,39 @@
+<div class="lineDoor viewBox">
+  <div class="zwSearch">
+    <div class="left">
+      <span>{{title}}</span>
+    </div>
+    <div class="right">
+    </div>
+  </div>
+  <div class="viewMain">
+    <div class="addFrom">
+      <div>
+        <span>名称：</span>
+        <el-input [(model)]="line.name" placeholder="请输入"></el-input>
+      </div>
+      <div>
+        <span>图片：</span>
+        <app-cropper-img [cpImg]="line.img" [boxStyle]="{width:200,height:200}"
+                         (saveEnd)="imageChange($event)"></app-cropper-img>
+      </div>
+      <div>
+        <span>颜色值：</span>
+        <el-input [(model)]="line.value"></el-input>
+      </div>
+      <div>
+        <span>添加工序：</span>
+        <ul class="ulBox">
+          <li *ngFor="let item of gxList let i=index">
+            <el-checkbox [(model)]="item.active"  label="{{item.name}}" ></el-checkbox>
+            <el-input [(model)]="item.price"  type="text" size="mini" style="margin-left: 30px;"></el-input>
+          </li>
+        </ul>
+      </div>
+      <br>
+      <el-button (click)="save()" [plain]="true" type="success">保存</el-button>
+    </div>
+  </div>
+</div>
+
+

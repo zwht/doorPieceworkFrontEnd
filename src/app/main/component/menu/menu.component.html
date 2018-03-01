@@ -1,0 +1,37 @@
+<div class="menuCpl">
+  <div class="header">
+    <div class="logo">
+      <img style="height: 50px;" [src]="logoImg" alt="">
+    </div>
+    <div class="topMenu">
+
+    </div>
+    <div class="right">
+      <el-dropdown (selected)="downChange($event)" trigger="click" [model]="rightDown">
+        <span>{{userName}}</span>
+        <i class="el-icon-setting" style="margin-right: 20px;"></i>
+      </el-dropdown>
+    </div>
+
+  </div>
+  <ul class="leftMenu">
+    <li *ngFor="let item of menu let i=index"
+        [ngClass]="{active:item.active,show:item.show,noChild:!item.children.length}">
+      <span (click)="bigMenu(item)">{{item.name}}
+        <i *ngIf="item.children.length" [ngClass]="{'icon-packup':item.show,'icon-unfold':!item.show}"
+           class="icon iconfont"></i>
+      </span>
+
+      <ul class="child" [ngStyle]="{height:item.show?item.children.length*34+'px':'0'}">
+        <li *ngFor="let child of item.children let j=index" (click)="goMenu(child)"
+            [ngClass]="{active:child.active}">
+          <span>{{child.name}}</span>
+        </li>
+      </ul>
+    </li>
+  </ul>
+  <div  class="mainBox">
+    <router-outlet></router-outlet>
+  </div>
+</div>
+

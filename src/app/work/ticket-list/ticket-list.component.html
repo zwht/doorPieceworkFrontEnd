@@ -1,0 +1,66 @@
+<div class="lineList viewBox">
+  <div class="zwSearch">
+    <div class="right">
+      <el-button (click)="add(0)" size="mini" type="primary">添加</el-button>
+    </div>
+  </div>
+  <div class="viewMain" [el-loading]="loading" [text]="'拼命加载中'">
+    <div class="noData" *ngIf="!list.length">
+      <span>没有数据...</span>
+    </div>
+    <table class="zwTable">
+      <tr>
+        <th>品牌</th>
+        <th>订单号</th>
+        <th>经销商</th>
+        <th>订货日期</th>
+        <th>交货日期</th>
+        <th>生产完成时间</th>
+        <th>交货地址</th>
+        <th>状态</th>
+        <th>操作</th>
+      </tr>
+      <tr *ngFor="let item of list let i=index">
+        <td>{{item.brandId==1?'重庆川峰门业':'重庆御驰门业'}}</td>
+        <td>{{item.name}}</td>
+        <td>{{item.dealersId}}</td>
+        <td>{{item.startTime| date:'yyyy年MM月dd日'}}</td>
+        <td>{{item.endTime| date:'yyyy年MM月dd日'}}</td>
+        <td>{{item.overTime| date:'yyyy年MM月dd日'}}</td>
+        <td>{{item.address}}</td>
+        <td class="el-tag-box">
+          <el-tag *ngIf="item.state==2" type="success">已完成</el-tag>
+          <el-tag *ngIf="item.state!=2" type="warning">生产中</el-tag>
+        </td>
+        <td style="width: 260px; text-align: center;">
+          <el-button (click)="del(item.id)" size="mini" type="warning" icon="delete" [plain]="true">删除</el-button>
+          <el-button (click)="add(item)" size="mini" type="success" icon="edit" [plain]="true">编辑</el-button>
+          <el-button (click)="print(item)" size="mini" type="info"  [plain]="true">打印</el-button>
+        </td>
+      </tr>
+    </table>
+    <div class="pageBox">
+      <el-pagination *ngIf="total" [total]="total"
+                     [page-size]="20"
+                     [(model)]="pageNum"
+                     (modelChange)="getList()"
+                     [layout]="['prev', 'pager', 'next', 'jumper', 'total']">
+      </el-pagination>
+    </div>
+  </div>
+  <el-dialog [(visible)]="toggle" custom-class="tagBox"
+             [center]="true" [show-close]="false" [width]="'300px'">
+    <ng-template #title style="padding-top: 10px;">
+      <span class="el-icon-warning"></span>
+      <span>确定删除</span>
+    </ng-template>
+    <div>删除不可回退，是否确定？</div>
+    <ng-template #footer style="padding-bottom: 10px;">
+      <el-button (click)="toggle=false" [plain]="true" type="info" size="small">取&nbsp;&nbsp;&nbsp;&nbsp;消</el-button>
+      <el-button (click)="delQd()" [plain]="true" type="success" size="small">确&nbsp;&nbsp;&nbsp;&nbsp;定</el-button>
+    </ng-template>
+  </el-dialog>
+</div>
+
+
+

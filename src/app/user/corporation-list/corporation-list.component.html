@@ -1,0 +1,48 @@
+<div class="userList viewBox">
+  <div class="zwSearch">
+    <div class="right">
+      <el-button (click)="add(0)" size="mini" type="primary">添加</el-button>
+    </div>
+  </div>
+  <div class="viewMain"  [el-loading]="loading" [text]="'拼命加载中'">
+    <div class="noData" *ngIf="!list.length">
+      <span>没有数据...</span>
+    </div>
+    <table class="zwTable">
+      <tr>
+        <th>名称</th>
+        <th>老板</th>
+        <th>电话</th>
+        <th>logo</th>
+        <th>地址</th>
+        <th>操作</th>
+      </tr>
+      <tr *ngFor="let item of list let i=index">
+        <td>{{item.name}}</td>
+        <td>{{item.boss}}</td>
+        <td>{{item.phone}}</td>
+        <th>
+          <img width="100"  [src]="item.img" alt="">
+        </th>
+        <td>{{item.address}}</td>
+        <td style="width: 280px; text-align: center;">
+          <el-button (click)="add(item)" size="mini" type="success" icon="edit" [plain]="true">查看用户</el-button>
+          <el-button *ngIf="item.state==1" (click)="updateState(item,0)" size="mini" type="warning" icon="delete" [plain]="true">禁用</el-button>
+          <el-button *ngIf="item.state==0" (click)="updateState(item,1)" size="mini" type="primary" icon="delete" [plain]="true">起用</el-button>
+          <el-button (click)="add(item)" size="mini" type="success" icon="edit" [plain]="true">编辑</el-button>
+        </td>
+      </tr>
+    </table>
+    <div class="pageBox">
+      <el-pagination *ngIf="total" [total]="total"
+                     [page-size]="20"
+                     [(model)]="pageNum"
+                     (modelChange)="getList()"
+                     [layout]="['prev', 'pager', 'next', 'jumper', 'total']">
+      </el-pagination>
+    </div>
+  </div>
+</div>
+
+
+

@@ -1,0 +1,35 @@
+<div class="addDoor viewBox">
+  <div class="zwSearch">
+    <div class="left">
+      <span>{{title}}</span>
+    </div>
+    <div class="right">
+    </div>
+  </div>
+  <div class="viewMain">
+    <div class="addFrom">
+      <div>
+        <span>登录名：</span>
+        <el-input [(model)]="user.loginName" placeholder="请输入登录名" type="text"></el-input>
+      </div>
+      <div>
+        <span>真实名字：</span>
+        <el-input [(model)]="user.name" placeholder="请输入用户名" type="text"></el-input>
+      </div>
+      <div *ngIf="!user.id">
+        <span>密&nbsp;&nbsp;&nbsp;码：</span>
+        <el-input [(model)]="user.password" placeholder="请输入密码"></el-input>
+      </div>
+      <div>
+        <span>手机号：</span>
+        <el-input [(model)]="user.phone" placeholder="请输入手机号" type="text"></el-input>
+      </div>
+      <div>
+        <span>地&nbsp;&nbsp;&nbsp;址：</span>
+        <el-input [(model)]="user.address" placeholder="请输入" type="text"></el-input>
+      </div>
+      <br>
+      <el-button (click)="save()" [plain]="true" type="success">保存</el-button>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,40 @@
+<div class="detailComponent viewBox">
+  <div class="zwSearch">
+    <div class="left">
+      <span>{{title}}</span>
+    </div>
+    <div class="right">
+    </div>
+  </div>
+  <div class="viewMain">
+    <div class="deatlBox">
+      <div>
+        <span>登录名：</span>
+        <b>{{data.loginName}}</b>
+      </div>
+      <div>
+        <span>名字：</span>
+        <b>{{data.name}}</b>
+      </div>
+    </div>
+    <div class="addFrom">
+
+      <div>
+        <span>旧密码：</span>
+        <el-input [(model)]="user.password" placeholder="请输入密码"></el-input>
+      </div>
+      <div>
+        <span>新密码：</span>
+        <el-input [(model)]="user.newPassword" placeholder="请输入密码"></el-input>
+      </div>
+      <div>
+        <span>再次输入：</span>
+        <el-input [(model)]="user.rPassword" placeholder="请输入密码"></el-input>
+      </div>
+      <br>
+      <el-button (click)="save()" [plain]="true" type="success">保存</el-button>
+    </div>
+
+
+  </div>
+</div>s

@@ -1,0 +1,36 @@
+.zwTable{ border: 1px solid @borderColor; width: 100%;  border-left: none;
+  border-bottom: none;  border-collapse: collapse; background: @white; color:@color1;
+  td,th{ border-left: 1px solid @borderColor; border-bottom: 1px solid @borderColor; }
+  th{text-align: center; height: 50px; font-weight: bold; background: @white;}
+  td{ padding: 6px; }
+}
+
+.zwSearch{clear: both; padding-bottom: 20px;
+  &:after { content: " "; height: 0; width: 0; visibility: hidden;
+    display: block; clear: both }
+  .right{ float: right;}
+
+}
+.viewBox{ padding: 20px; color: @black;
+  .viewMain{ padding: 10px; background: @white; border-radius: 6px;  min-height: 500px;
+    box-shadow: 0 0 8px rgba(0,0,0,0.1); position: relative;
+    .noData{ min-height: 400px; line-height: 400px; text-align: center;
+      font-size: 16px; color: #999; position: absolute; width: 100%; background: #fff;
+      height: 100%; z-index: 1;
+    }
+  }
+}
+
+.pageBox{ text-align: right; padding: 10px 0;}
+
+.el-tag-box{
+  /deep/.el-tag{ border-radius: 20px; height: 20px; line-height: 20px;}
+}
+
+.addFrom{ width: 500px; margin: 0 auto;
+  >div{ display: block; margin: 10px 0;
+    el-input,el-select{ width: 300px; display: inline-block;}
+    /deep/.el-select{ width: 300px;}
+    span,app-cropper-img{ vertical-align: middle; display: inline-block;}
+  }
+}

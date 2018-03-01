@@ -1,0 +1,205 @@
+<div class="ticketAdd viewBox">
+  <div class="zwSearch">
+    <div class="right">
+      <el-button (click)="save()" size="mini" type="primary">保存</el-button>
+      <el-button (click)="print()" size="mini" type="primary">打印页面</el-button>
+      <el-button (click)="toggle=true" size="mini" type="primary">生产完成</el-button>
+    </div>
+  </div>
+  <div class="tableBox viewMain">
+    <table cellspacing="0">
+      <tr>
+        <td colspan="2">经销商</td>
+        <td>
+          <el-select [(model)]="ticket.dealersId" placeholder="请选择"
+                     (modelChange)="dealersChange($event)">
+            <el-option *ngFor="let item of userListObj[3]"
+                       [label]="item.name"
+                       [value]="item.id">
+            </el-option>
+          </el-select>
+        </td>
+
+        <td>品牌名称</td>
+        <td>
+          <el-select [(model)]="ticket.brandId" placeholder="请选择">
+            <el-option *ngFor="let item of brandList"
+                       [label]="item.name"
+                       [value]="item.id">
+            </el-option>
+          </el-select>
+        </td>
+
+        <td>订单编号</td>
+        <td colspan="5">
+          <el-input [(model)]="ticket.name" placeholder=""></el-input>
+        </td>
+      </tr>
+      <tr>
+        <td colspan="2">地址</td>
+        <td colspan="3">
+          <el-input [(model)]="ticket.address" placeholder=""></el-input>
+        </td>
+
+        <td>订货日期</td>
+        <td colspan="2">
+          <el-date-picker *ngIf="changeDate" [(model)]="ticket.startTime"
+                          [format]="'yyyy年MM月dd日'"></el-date-picker>
+
+        </td>
+        <td>交货日期</td>
+        <td colspan="2">
+          <el-date-picker *ngIf="changeDate" [(model)]="ticket.endTime"
+                          [format]="'yyyy年MM月dd日'"></el-date-picker>
+        </td>
+      </tr>
+      <tr>
+        <td rowspan="2" style="width: 60px;">序号</td>
+        <td rowspan="2" style="width: 160px;">型号</td>
+
+        <td>洞口尺寸</td>
+        <td>门扇尺寸</td>
+
+        <td rowspan="2">立板尺寸</td>
+        <td rowspan="2">顶板尺寸</td>
+        <td rowspan="2">颜色</td>
+        <td rowspan="2">线条款式</td>
+        <td rowspan="2">线条数量</td>
+        <td rowspan="2">备注</td>
+        <td rowspan="2" style="width: 150px;">
+          操作
+          <el-button size="mini" type="primary" icon="plus" (click)="addDoor()"></el-button>
+        </td>
+      </tr>
+      <tr>
+        <td class="s30">
+          <span>高</span>
+          <span>宽</span>
+          <span>厚</span>
+        </td>
+        <td class="s50">
+          <span>高</span>
+          <span>宽</span>
+        </td>
+      </tr>
+      <tr *ngFor="let item of productList let i=index">
+        <td>{{i+1}}</td>
+        <td class="doorName">
+          <el-select (modelChange)="doorChange($event,item)" size="mini" [(model)]="item.doorId" placeholder="请选择">
+            <el-option *ngFor="let obj of doorList"
+                       [label]="obj.name"
+                       [value]="obj.id" >
+            </el-option>
+          </el-select>
+          <img *ngIf="item.doorImg&&showImg" style="width: 50px;" [src]="item.doorImg" alt="">
+        </td>
+        <td class="input3">
+          <input type="number" [(ngModel)]="item.coverWidth" placeholder="">
+          *
+          <input type="number" [(ngModel)]="item.coverHeight" placeholder="">
+          *
+          <input type="number" [(ngModel)]="item.coverDepth" placeholder="">
+        </td>
+        <td class="input3">
+          <input type="number" [(ngModel)]="item.width" placeholder="">
+          *
+          <input type="number" [(ngModel)]="item.height" placeholder="">
+          =
+          <input type="number" [(ngModel)]="item.sum" placeholder="">
+        </td>
+        <td class="input3">
+          <input type="number" [(ngModel)]="item.lbWidth" placeholder="">
+          *
+          <input type="number" [(ngModel)]="item.lbHeight" placeholder="">
+          =
+          <input type="number" [(ngModel)]="item.lbSum" (ngModelChange)="sumChange()" placeholder="">
+        </td>
+        <td class="input3">
+          <input type="number" [(ngModel)]="item.dbWidth" placeholder="">
+          *
+          <input type="number" [(ngModel)]="item.dbHeight" placeholder="">
+          =
+          <input type="number" [(ngModel)]="item.dbSum" (ngModelChange)="sumChange()" placeholder="">
+        </td>
+        <td>
+          <el-select [(model)]="item.colorId" placeholder="请选择"
+                     (modelChange)="colorChange($event,item)">
+            <el-option *ngFor="let obj of colorList"
+                       [label]="obj.name"
+                       [value]="obj.id">
+            </el-option>
+          </el-select>
+          <img *ngIf="item.colorImg&&showImg" style="width: 50px;" [src]="item.colorImg" alt="">
+        </td>
+        <td>
+          <el-select [(model)]="item.lineId" placeholder="请选择"
+                     (modelChange)="lineChange($event,item)">
+            <el-option *ngFor="let obj of lineList"
+                       [label]="obj.name"
+                       [value]="obj.id">
+            </el-option>
+          </el-select>
+          <img *ngIf="item.lineImg&&showImg" style="width: 50px;" [src]="item.lineImg" alt="">
+        </td>
+        <td class="input2">
+          <input type="number" [(ngModel)]="item.lineLength" placeholder="">
+          =
+          <input type="number"  [(ngModel)]="item.lineSum" (ngModelChange)="sumChange()" placeholder="">
+        </td>
+        <td>
+          <textarea style="width: 100%; border: none;" [(ngModel)]="item.mark" placeholder=""></textarea>
+        </td>
+        <td class="operation">
+          <span (click)="copyAdd(item)">复制添加</span>
+          <span (click)="delDoor(item,i)">删除</span>
+        </td>
+      </tr>
+      <tr>
+        <td>总计：</td>
+        <td colspan="11" class="statistics">
+          门扇：
+          <input type="number" [(ngModel)]="ticket.sumDoor" placeholder="">
+          <b>个</b>
+          套板：
+          <input type="number" [(ngModel)]="ticket.sumTaoban" placeholder="">
+          <b>块</b>
+          线条：
+          <input type="number" [(ngModel)]="ticket.sumLine" placeholder="">
+          <b>支</b>
+        </td>
+      </tr>
+    </table>
+    <ul class="gxBox clear2">
+      <li *ngFor="let item of gxList let i=index">
+        <div class="had">
+          <b>{{item.name}}</b>
+          <input type="number"
+                 [(ngModel)]="item.price" placeholder="">
+          <span>(元)</span>
+        </div>
+        <div>
+          <el-select size="mini" [(model)]="item.userId" placeholder="请选择">
+            <el-option *ngFor="let obj of userListObj[item.name]"
+                       [label]="obj.name"
+                       [value]="obj.id">
+            </el-option>
+          </el-select>
+        </div>
+      </li>
+    </ul>
+  </div>
+
+  <el-dialog [(visible)]="toggle" custom-class="tagBox"
+             [center]="true" [show-close]="false" [width]="'300px'">
+    <ng-template #title style="padding-top: 10px;">
+      <span class="el-icon-warning"></span>
+      <span>确定完成</span>
+    </ng-template>
+    <div>确定完成后不可修改，是否确定？</div>
+    <ng-template #footer style="padding-bottom: 10px;">
+      <el-button (click)="toggle=false" [plain]="true" type="info" size="small">取&nbsp;&nbsp;&nbsp;&nbsp;消</el-button>
+      <el-button (click)="saveState()" [plain]="true" type="success" size="small">确&nbsp;&nbsp;&nbsp;&nbsp;定</el-button>
+    </ng-template>
+  </el-dialog>
+
+</div>

@@ -1,0 +1,29 @@
+<div class="addDoor viewBox">
+  <div class="zwSearch">
+    <div class="left">
+      <span>{{title}}</span>
+    </div>
+    <div class="right">
+    </div>
+  </div>
+  <div class="viewMain">
+    <div class="addFrom">
+      <div>
+        <span>公司名称：</span>
+        <el-input [(ngModel)]="component.name" placeholder="请输入"></el-input>
+      </div>
+      <div>
+        <span>地&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;址：</span>
+        <el-input [(ngModel)]="component.address" placeholder="请输入"></el-input>
+      </div>
+      <div>
+        <span>添加logo：</span>
+        <app-cropper-img [cpImg]="component.img" [boxStyle]="{width:400,height:100}"
+                         (saveEnd)="imageChange($event)"></app-cropper-img>
+      </div>
+      <br>
+      <el-button (click)="save()" [plain]="true" type="success">保存</el-button>
+    </div>
+  </div>
+</div>
+

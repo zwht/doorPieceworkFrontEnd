@@ -1,0 +1,19 @@
+<div class="loginCmp">
+  <div>
+    <div class="logo">
+      <img style=" height: 60px;"
+           [src]="logoImg" alt="">
+    </div>
+    <div class="mainC">
+      <div class="inpu">
+        <el-input [(model)]="login.loginName" placeholder="请输入用户名"></el-input>
+      </div>
+      <div class="inpu">
+        <el-input [(model)]="login.password" native-type="password" placeholder="请输入密码"></el-input>
+      </div>
+      <el-button [loading]="loading"  type="success" (click)="onLogin()" [plain]="true"
+                 style="width: 100%; margin-top: 20px;"
+      >登&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;录</el-button>
+    </div>
+  </div>
+</div>

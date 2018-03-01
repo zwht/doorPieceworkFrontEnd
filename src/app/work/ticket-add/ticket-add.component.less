@@ -1,0 +1,53 @@
+.ticketAdd{ padding: 10px; color: #666;
+  .tableBox{ background: #fff; padding: 20px; border-radius: 6px;
+    >table{ border: 1px solid #ededed; width: 100%;  border-left: none; border-bottom: none; text-align: center;
+      td{ border-left: 1px solid #ededed; border-bottom: 1px solid #ededed;
+        /deep/ input{ border: none; padding: 0; width: 100%; border-radius: 0;
+          &:hover{ background: #f1f1f1;}
+          &:focus{ background: #cccab6;}
+        }
+        el-select{ width: 100%;}
+      }
+      tr{ }
+      .s30{
+        span{ display: inline-block; width: 32%;}
+      }
+      .s50{
+        span{ display: inline-block; width: 48%;}
+      }
+      .input3{ width: 220px;
+        input{ width: 50px; height: 30px; display: inline-block; border-bottom: 1px solid #ededed;}
+      }
+      .input2{width: 140px;
+        input{ width: 50px; height: 30px; display: inline-block; border-bottom: 1px solid #ededed;}
+      }
+      .doorName{ width: 200px;
+        /deep/el-select{ width: 100px !important;}
+        span,img,/deep/el-select{ vertical-align: middle;}
+      }
+      .statistics{ text-align: left; height: 40px; padding: 10px 50px;
+        input{ width: 44px; height: 30px; display: inline-block; border-bottom: 1px solid #ededed;
+        }
+        b{ margin-right: 50px;}
+        span{ color: #c00;}
+      }
+      .operation{
+        span{ color: #00abff; cursor: pointer; margin: 0 5px;
+          &:hover{opacity: 0.8;}
+        }
+      }
+    }
+  }
+  .gxBox{ border-top: 1px solid #ededed; border-left: 1px solid #ededed; margin-top: 40px;
+    li{ float: left; width: 160px; padding: 10px 5px; border-bottom: 1px solid #ededed;
+      border-right: 1px solid #ededed;
+      .had{ margin-bottom: 10px;
+        b{ display: inline-block; width: 70px; font-weight: bold;}
+        input{ border: 1px solid #ededed;width: 50px; display: inline-block;}
+        input,span{ color: #c00;}
+      }
+      div{ }
+    }
+  }
+}
+

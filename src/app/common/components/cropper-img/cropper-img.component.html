@@ -1,0 +1,25 @@
+<div class="cropperImg">
+  <div class="showImg" *ngIf="!!cpImg"  (click)="showDialog()">
+    <p>重新选择图片</p>
+    <img  [src]="cpImg" alt="">
+  </div>
+  <div *ngIf="!cpImg" >
+    <el-button (click)="showDialog()"
+               [plain]="true" type="info">选择图片</el-button>
+  </div>
+
+
+  <el-dialog [(visible)]="dialog"
+             [close-on-click-modal]="false" class="">
+    <ng-template #title>
+      <span style="color: #000;">裁剪上传</span>
+    </ng-template>
+    <div class="contentDialog" [ngStyle]='contentDialogStyle'>
+      <input  #inputImage  type="file" accept="image/*" style="display: none;"/>
+      <img style="width: 100%;" #image src="./assets/images/sky-bg.jpg">
+    </div>
+    <ng-template #footer>
+      <el-button [loading]="loading" (click)="save()">保存</el-button>
+    </ng-template>
+  </el-dialog>
+</div>

@@ -1,0 +1,30 @@
+<div class="addUser viewBox">
+  <div class="zwSearch">
+    <div class="left">
+      <span>{{title}}</span>
+    </div>
+    <div class="right">
+    </div>
+  </div>
+  <div class="viewMain">
+    <div class="addFrom">
+      <div>
+        <span>名称：</span>
+        <el-input [(model)]="color.name" placeholder="请输入"></el-input>
+      </div>
+      <div>
+        <span>图片：</span>
+        <app-cropper-img [cpImg]="color.img" [boxStyle]="{width:200,height:200}"
+                         (saveEnd)="imageChange($event)"></app-cropper-img>
+      </div>
+      <div>
+        <span>颜色值：</span>
+        <el-input [(model)]="color.value"></el-input>
+      </div>
+      <br>
+      <el-button (click)="save()" [plain]="true" type="success">保存</el-button>
+    </div>
+  </div>
+</div>
+
+
