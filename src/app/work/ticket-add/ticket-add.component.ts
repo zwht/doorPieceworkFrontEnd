@@ -174,25 +174,36 @@ export class TicketAddComponent implements OnInit {
     setTimeout(() => {
       this.productList.forEach(item => {
         if (!item.doorId || item.doorId == '0') return;
+        //门对象
         item.doorObj = this.doorListObj[item.doorId];
+        //线条对象
+        item.lineObj=this.lineListObj[item.lineId];
+
         this.ticket.sumDoor += 1;
         this.ticket.sumTaoban += (item.lbSum+item.dbSum);
         this.ticket.sumLine += item.lineSum;
 
-        item.doorObj.gx.forEach(fuck => {
-          this.gxList.forEach(fuck1 => {
-            if (fuck.id == fuck1.id) fuck1.price += fuck.price;
-          });
+        this.gxList.forEach(fuck1 => {
+          if(item.doorObj&&item.doorObj.gx){
+            item.doorObj.gx.forEach(fuck => {
+              if (fuck.id == fuck1.id) fuck1.price += fuck.price;
+            });
+          }
+          if(item.lineObj&&item.lineObj.gxIds){
+            item.lineObj.gxIds.forEach((lineObj,i)=>{
+                if (lineObj == fuck1.id){
+                fuck1.price +=  parseInt(item.lineObj.gxValues[i])*item.lineSum;
+                }
+            })
+          }
 
-        })
+        });
       });
     }, 100);
 
   }
 
-  sumChange(){
-    this.calculate();
-  }
+
   dealersChange(e) {
     this.userListObj[3].forEach(item => {
       if (item.id === e) {
@@ -207,6 +218,11 @@ export class TicketAddComponent implements OnInit {
 
   lineChange(e, item) {
     item.lineImg = this.lineListObj[e].img;
+    this.calculate();
+
+  }
+  sumChange(){
+    this.calculate();
   }
 
   // 复制添加
@@ -466,6 +482,8 @@ export class TicketAddComponent implements OnInit {
         if (rep.code === 200) {
           this.lineList = response.data.data;
           this.lineList.forEach(item => {
+            item.gxIds=item.gxIds.split(",");
+            item.gxValues=item.gxValues.split(",");
             this.lineListObj[item.id] = item;
           })
         } else {

@@ -12,6 +12,7 @@ export class DateSet {
   getDate(date) {
     if(!date) return null;
     if(typeof(date)=="number") return date;
+    if(date.getTime) return date.getTime();
     const year = date.split('')[0] + date.split('')[1] + date.split('')[2] + date.split('')[3];
     let month = date.split('')[5] + date.split('')[6];
     const day = date.split('')[8] + date.split('')[9];
@@ -20,6 +21,7 @@ export class DateSet {
   getDate1(date) {
     if(!date) return null;
     if(typeof(date)=="number") return date;
+    if(date.getTime) return date.getTime();
     const year = date.split('')[0] + date.split('')[1] + date.split('')[2] + date.split('')[3];
     let month = date.split('')[5] + date.split('')[6];
     const day = date.split('')[8] + date.split('')[9];
