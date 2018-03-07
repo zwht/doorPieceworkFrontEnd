@@ -9,27 +9,28 @@ import {LineService} from '../../common/restService/LineService';
 import {ProductService} from '../../common/restService/ProductService';
 import {ProcessService} from '../../common/restService/ProcessService';
 import {DateSet} from '../../common/service/DateSet';
-import {ElMessageService} from 'element-angular'
+import { ElMessageService } from 'element-angular'
 
 @Component({
-	selector: 'app-ticket-add',
-	templateUrl: './ticket-add.component.html',
-	styleUrls: ['./ticket-add.component.less'],
-	providers: [ProcessService, ProductService, TicketService, UserService, GxService, DoorService, DateSet, ColorService, LineService]
+	selector: 'app-ticket-add-dealers',
+	templateUrl: './ticket-add-dealers.component.html',
+	styleUrls: ['./../ticket-add/ticket-add.component.less'],
+	providers: [ProcessService,ProductService, TicketService, UserService, GxService, DoorService, DateSet, ColorService, LineService]
 })
-export class TicketAddComponent implements OnInit {
-	showImg = false;
-	toggle = false;
+export class TicketAddDealersComponent implements OnInit {
+	showImg=false;
+	toggle=false;
 	colorList = [];
 	colorListObj = {};
 	lineList = [];
 	lineListObj = {};
 	changeDate = true;
 	userListObj = {3: []};
+	dealersName=localStorage.getItem('userName');
 	ticket = {
 		id: null,
 		name: null,
-		dealersId: null,
+		dealersId: localStorage.getItem('userId'),
 		brandId: 1,
 		odd: null,
 		address: null,
@@ -39,12 +40,12 @@ export class TicketAddComponent implements OnInit {
 		overTime: null,
 		processIds: null,
 		corporationId: null,
-		state: 0,
+		state: 200,
 		number: 0,
 		pay: null,
-		sumDoor: null,
-		sumTaoban: null,
-		sumLine: null
+		sumDoor:null,
+		sumTaoban:null,
+		sumLine:null
 	};
 	emptyProduct = {
 		id: null,
@@ -75,7 +76,7 @@ export class TicketAddComponent implements OnInit {
 		type: null,
 		isModule: null,
 		moduleId: null,
-		state: null,
+		state: 0,
 		lbSum: null,
 		dbSum: null,
 		sum: null,
@@ -158,6 +159,7 @@ export class TicketAddComponent implements OnInit {
 
 	}
 
+
 	doorChange(e, it) {
 		if (e && it) it.doorImg = this.doorListObj[e].img;
 		this.calculate();
@@ -168,36 +170,15 @@ export class TicketAddComponent implements OnInit {
 		this.gxList.forEach(item => {
 			item.price = 0;
 		});
-		this.ticket.sumDoor = 0;
-		this.ticket.sumTaoban = 0;
-		this.ticket.sumLine = 0;
+		this.ticket.sumDoor=0;
+		this.ticket.sumTaoban=0;
+		this.ticket.sumLine=0;
 		setTimeout(() => {
 			this.productList.forEach(item => {
 				if (!item.doorId || item.doorId == '0') return;
-				//门对象
-				item.doorObj = this.doorListObj[item.doorId];
-				//线条对象
-				item.lineObj = this.lineListObj[item.lineId];
-
 				this.ticket.sumDoor += 1;
-				this.ticket.sumTaoban += (item.lbSum + item.dbSum);
+				this.ticket.sumTaoban += (item.lbSum+item.dbSum);
 				this.ticket.sumLine += item.lineSum;
-
-				this.gxList.forEach(fuck1 => {
-					if (item.doorObj && item.doorObj.gx) {
-						item.doorObj.gx.forEach(fuck => {
-							if (fuck.id == fuck1.id) fuck1.price += fuck.price;
-						});
-					}
-					if (item.lineObj && item.lineObj.gxIds) {
-						item.lineObj.gxIds.forEach((lineObj, i) => {
-							if (lineObj == fuck1.id) {
-								fuck1.price += parseInt(item.lineObj.gxValues[i]) * item.lineSum;
-							}
-						})
-					}
-
-				});
 			});
 		}, 100);
 
@@ -221,15 +202,14 @@ export class TicketAddComponent implements OnInit {
 		this.calculate();
 
 	}
-
-	sumChange() {
+	sumChange(){
 		this.calculate();
 	}
 
 	// 复制添加
 	copyAdd(item) {
-		let obj = JSON.parse(JSON.stringify(item));
-		obj.id = null;
+		let obj=JSON.parse(JSON.stringify(item));
+		obj.id=null;
 		this.productList.push(obj);
 		this.calculate();
 	}
@@ -260,17 +240,15 @@ export class TicketAddComponent implements OnInit {
 			.then(rep => {
 				if (rep.data.data && rep.data.data.length) {
 					rep.data.data.forEach(item => {
-						if (item.doorId && item.doorId != '0' && this.doorListObj[item.doorId]) item.doorImg = this.doorListObj[item.doorId].img;
-						if (item.colorId && item.colorId != '0' && this.colorListObj[item.colorId]) item.colorImg = this.colorListObj[item.colorId].img;
-						if (item.lineId && item.lineId != '0' && this.lineListObj[item.lineId]) item.lineImg = this.lineListObj[item.lineId].img;
+						if (item.doorId && item.doorId != '0'&&this.doorListObj[item.doorId]) item.doorImg = this.doorListObj[item.doorId].img;
+						if (item.colorId && item.colorId != '0'&&this.colorListObj[item.colorId]) item.colorImg = this.colorListObj[item.colorId].img;
+						if (item.lineId && item.lineId != '0'&&this.lineListObj[item.lineId]) item.lineImg = this.lineListObj[item.lineId].img;
 					});
 					this.productList = rep.data.data;
-
 				}
 			})
 	}
-
-	getProcessList() {
+	getProcessList(){
 		this.processService['list']({
 			params: {
 				params2: 1,
@@ -281,21 +259,14 @@ export class TicketAddComponent implements OnInit {
 			.then(rep => {
 				if (rep.data.data && rep.data.data.length) {
 					rep.data.data.forEach(item => {
-						this.gxList.forEach(obj => {
-							if (item.gxId == obj.id) {
-								obj.processId = item.id;
-								obj.price = item.price;
-								obj.userId = item.userId;
+						this.gxList.forEach(obj=>{
+							if(item.gxId==obj.id){
+								obj.processId=item.id;
+								obj.price=item.price;
+								obj.userId=item.userId;
 							}
 						});
 					});
-					if (!this.productList.length) {
-						setTimeout(() => {
-							this.calculate()
-						},2000)
-					} else {
-						this.calculate()
-					}
 				}
 			})
 	}
@@ -341,15 +312,14 @@ export class TicketAddComponent implements OnInit {
 				that.getProductList();
 			})
 	}
-
 	saveProcess() {
-		let arr = [];
-		this.gxList.forEach(item => {
+		let arr=[];
+		this.gxList.forEach(item=>{
 			arr.push({
-				id: item.processId || null,
-				gxId: item.id,
-				userId: item.userId,
-				price: item.price
+				id:item.processId||null,
+				gxId:item.id,
+				userId:item.userId,
+				price:item.price
 			})
 		});
 
@@ -365,7 +335,7 @@ export class TicketAddComponent implements OnInit {
 			})
 	}
 
-	save(key) {
+	save() {
 		const ticket = JSON.parse(JSON.stringify(this.ticket));
 		ticket.startTime = this.dateSet.getDate(ticket.startTime);
 		ticket.endTime = this.dateSet.getDate(ticket.endTime);
@@ -375,27 +345,24 @@ export class TicketAddComponent implements OnInit {
 				.then(response => {
 					const rep = (response as any);
 					if (rep.code === 200) {
-						this.router.navigate(['/admin/work/ticket/add'], {queryParams: {id: this.ticket.id}});
+						this.router.navigate(['/admin/work/dealers/add'], {queryParams: {id: this.ticket.id}});
 						this.saveProduct();
 						this.saveProcess();
 						this.message.success(rep.data);
-						if(key){
-							this.ticketService['updateState']({params: {id: this.ticket.id,state:230}})
-								.then(response => {
-									this.toggle = false;
-								})
-						}
 					} else {
 						this.message.error(rep.message);
 					}
 				});
+
+
 		} else {
+
 			(this.ticketService as any).add({data: ticket})
 				.then(response => {
 					const rep = (response as any);
 					if (rep.code === 200) {
 						this.ticket = rep.data;
-						this.router.navigate(['/admin/work/ticket/add'], {queryParams: {id: this.ticket.id}});
+						this.router.navigate(['/admin/work/dealers/add'], {queryParams: {id: this.ticket.id}});
 						this.saveProduct();
 						this.saveProcess();
 						this.message.success(rep.data);
@@ -406,11 +373,12 @@ export class TicketAddComponent implements OnInit {
 		}
 
 	}
-
-	saveState() {
-		this.save(1);
+	saveState(){
+		this.ticketService['updateState']({params:{id:this.ticket.id,state:210}})
+			.then(response=>{
+				this.toggle=false;
+			})
 	}
-
 	getDoorList(callBack) {
 		(this.doorService as any).list({
 			params: {
@@ -452,10 +420,10 @@ export class TicketAddComponent implements OnInit {
 
 					this.gxList = response.data.data;
 					this.gxList.forEach(item => {
-						item.price = 0;
+						item.price=0;
 						this.gxListObj[item.id] = item;
 					});
-					if (!this.ticket.id) this.calculate();
+					if(!this.ticket.id) this.calculate();
 				} else {
 					console.log(response);
 				}
@@ -495,8 +463,8 @@ export class TicketAddComponent implements OnInit {
 				if (rep.code === 200) {
 					this.lineList = response.data.data;
 					this.lineList.forEach(item => {
-						item.gxIds = item.gxIds.split(",");
-						item.gxValues = item.gxValues.split(",");
+						item.gxIds=item.gxIds.split(",");
+						item.gxValues=item.gxValues.split(",");
 						this.lineListObj[item.id] = item;
 					})
 				} else {
@@ -527,8 +495,7 @@ export class TicketAddComponent implements OnInit {
 		}
 		this.calculate();
 	}
-
-	print() {
+	print(){
 		this.router.navigate(['/admin/work/ticket/print'], {queryParams: {id: this.ticket.id}});
 	}
 

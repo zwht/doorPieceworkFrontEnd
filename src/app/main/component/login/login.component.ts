@@ -60,6 +60,7 @@ export class LoginComponent implements OnInit {
         if (rep.code === 200) {
           localStorage.setItem('loginName', rep.data.loginName);
           localStorage.setItem('userName', rep.data.name);
+	        localStorage.setItem('userId', rep.data.id);
           localStorage.setItem('token', rep.data.token);
           localStorage.setItem('roles', response.data.roles);
           localStorage.removeItem('logoUrl');
@@ -90,7 +91,8 @@ export class LoginComponent implements OnInit {
         this.router.navigateByUrl('/admin/work/ticket');
         break;
       case '3':
-        //this.router.navigateByUrl('/admin/user/company');
+        this.router.navigateByUrl('/admin/work/dealers');
+
         break;
       case '4':
         //this.router.navigateByUrl('/admin/user/company');

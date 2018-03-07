@@ -31,9 +31,10 @@
         <td class="el-tag-box">
           <el-tag type="success">{{item.state | ticketState}}</el-tag>
         </td>
-        <td style="width: 360px; text-align: center;">
-          <el-button *ngIf="stateKey==1" (click)="del(item.id)" size="mini" type="warning" icon="delete" [plain]="true">删除</el-button>
-          <el-button *ngIf="stateKey==1" (click)="add(item)" size="mini" type="success" icon="edit" [plain]="true">编辑</el-button>
+        <td style="width: 350px; text-align: center;">
+          <el-button *ngIf="item.state==200" (click)="submit(item.id)" size="mini" type="primary" icon="check" [plain]="true">提交订单</el-button>
+          <el-button *ngIf="item.state<=220" (click)="del(item.id)" size="mini" type="warning" icon="delete" [plain]="true">删除</el-button>
+          <el-button *ngIf="item.state<=220" (click)="add(item)" size="mini" type="success" icon="edit" [plain]="true">编辑</el-button>
           <el-button (click)="print(item)" size="mini" type="info"  [plain]="true">打印</el-button>
         </td>
       </tr>

@@ -8,14 +8,16 @@ import {HttpClientModule, HTTP_INTERCEPTORS} from '@angular/common/http';
 import {HttpServer} from './service/HttpServer';
 import {DateSet} from './service/DateSet';
 import {EssenceNg2PrintModule} from "essence-ng2-print";
+import { TicketStatePipe } from './pipe/ticket-state.pipe';
+
 @NgModule({
   imports: [
     CommonModule,
     HttpClientModule,
     ElModule.forRoot()
   ],
-  declarations: [CropperImgComponent],
-  exports: [CropperImgComponent,EssenceNg2PrintModule],
+  declarations: [CropperImgComponent, TicketStatePipe],
+  exports: [CropperImgComponent,EssenceNg2PrintModule,TicketStatePipe],
   providers: [
     DateSet,
     HttpServer,

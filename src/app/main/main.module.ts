@@ -44,7 +44,7 @@ import {MenuComponent} from './component/menu/menu.component';
             loadChildren: 'app/work/work.module#WorkModule',
             data: {
               name: '工单管理',
-              type: [0,1,2],
+              type: [0,1,2,3],
               menu: true
             }
           },

@@ -1,24 +1,19 @@
 <div class="ticketAdd viewBox">
   <div class="zwSearch">
-    <div class="right">
-      <el-button (click)="save(0)" size="mini" type="primary">保存</el-button>
+    <div class="right" >
+      <el-button (click)="save()" size="mini" type="primary">保存</el-button>
       <el-button (click)="print()" size="mini" type="primary">打印页面</el-button>
-      <el-button (click)="toggle=true" size="mini" type="primary">提交开始生产</el-button>
+      <span  *ngIf="ticket.state==200&&ticket.id">
+         <el-button (click)="saveState()" size="mini" type="primary">提交订单</el-button>
+      </span>
+
     </div>
   </div>
   <div class="tableBox viewMain">
     <table cellspacing="0">
       <tr>
         <td colspan="2">经销商</td>
-        <td>
-          <el-select [(model)]="ticket.dealersId" placeholder="请选择"
-                     (modelChange)="dealersChange($event)">
-            <el-option *ngFor="let item of userListObj[3]"
-                       [label]="item.name"
-                       [value]="item.id">
-            </el-option>
-          </el-select>
-        </td>
+        <td>{{dealersName}}</td>
 
         <td>品牌名称</td>
         <td>
@@ -32,11 +27,11 @@
 
         <td>订单编号</td>
         <td colspan="5">
-          <el-input [(model)]="ticket.name" placeholder=""></el-input>
+          {{ticket.name}}
         </td>
       </tr>
       <tr>
-        <td colspan="2">地址</td>
+        <td colspan="2">收货地址</td>
         <td colspan="3">
           <el-input [(model)]="ticket.address" placeholder=""></el-input>
         </td>
@@ -132,8 +127,7 @@
           <img *ngIf="item.colorImg&&showImg" style="width: 50px;" [src]="item.colorImg" alt="">
         </td>
         <td>
-          <el-select [(model)]="item.lineId" placeholder="请选择"
-                     (modelChange)="lineChange($event,item)">
+          <el-select (modelChange)="lineChange($event,item)" [(model)]="item.lineId" placeholder="请选择">
             <el-option *ngFor="let obj of lineList"
                        [label]="obj.name"
                        [value]="obj.id">
@@ -169,33 +163,15 @@
         </td>
       </tr>
     </table>
-    <ul class="gxBox clear2">
-      <li *ngFor="let item of gxList let i=index">
-        <div class="had">
-          <b>{{item.name}}</b>
-          <input type="number"
-                 [(ngModel)]="item.price" placeholder="">
-          <span>(元)</span>
-        </div>
-        <div>
-          <el-select size="mini" [(model)]="item.userId" placeholder="请选择">
-            <el-option *ngFor="let obj of userListObj[item.name]"
-                       [label]="obj.name"
-                       [value]="obj.id">
-            </el-option>
-          </el-select>
-        </div>
-      </li>
-    </ul>
   </div>
 
   <el-dialog [(visible)]="toggle" custom-class="tagBox"
              [center]="true" [show-close]="false" [width]="'300px'">
     <ng-template #title style="padding-top: 10px;">
       <span class="el-icon-warning"></span>
-      <span>确定完成</span>
+      <span>确定提交</span>
     </ng-template>
-    <div>确定开始生产后不可修改，是否确定？</div>
+    <div>确定提交后，如果厂家开始生产，修改麻烦，是否确定？</div>
     <ng-template #footer style="padding-bottom: 10px;">
       <el-button (click)="toggle=false" [plain]="true" type="info" size="small">取&nbsp;&nbsp;&nbsp;&nbsp;消</el-button>
       <el-button (click)="saveState()" [plain]="true" type="success" size="small">确&nbsp;&nbsp;&nbsp;&nbsp;定</el-button>

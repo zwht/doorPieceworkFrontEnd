@@ -5,7 +5,7 @@ import {UserService} from '../../common/restService/UserService';
 @Component({
   selector: 'app-ticket-list',
   templateUrl: './ticket-list.component.html',
-  styleUrls: ['./ticket-list.component.css'],
+  styleUrls: ['./ticket-list.component.less'],
   providers: [TicketService,UserService]
 })
 export class TicketListComponent implements OnInit {
@@ -16,6 +16,8 @@ export class TicketListComponent implements OnInit {
   userList= {};
   total = 0;
   pageNum = 1;
+	state =[];
+	stateKey=1;
 
   constructor(private ticketService: TicketService,
               private userService: UserService,
@@ -23,6 +25,20 @@ export class TicketListComponent implements OnInit {
   }
 
   ngOnInit() {
+	  switch (this.router.url) {
+		  case '/admin/work/ticket':
+			  this.state = [210];
+			  this.stateKey=1;
+			  break;
+		  case '/admin/work/ticket/production':
+			  this.state = [230];
+			  this.stateKey=2;
+			  break;
+		  case '/admin/work/dealers/finish':
+			  this.state = [830];
+			  this.stateKey=3;
+			  break;
+	  }
     this.getUser()
 
   }
@@ -58,7 +74,8 @@ export class TicketListComponent implements OnInit {
       params: {
         params2: this.pageNum,
         params3: 10
-      }
+      },
+	    data:{state:this.state}
     })
       .then(response => {
         this.loading = false;

@@ -31,14 +31,16 @@ export const routes: Routes = [
         path: 'detail',
         component: DetailComponent,
         data: {
-          name: '个人中心'
+          name: '个人中心',
+	        type: [0,1]
         }
       },
       {
         path: 'company/add',
         component: CorporationAddComponent,
         data: {
-          name: '添加企业'
+          name: '添加企业',
+	        type: [0,1]
         }
       },
       {
@@ -46,6 +48,7 @@ export const routes: Routes = [
         component: AdminListComponent,
         data: {
           name: '管理员管理',
+	        type: [0,1],
           menu: true
         }
       },
@@ -53,7 +56,8 @@ export const routes: Routes = [
         path: 'admin/add',
         component: AdminAddComponent,
         data: {
-          name: '添加管理员用户'
+          name: '添加管理员用户',
+	        type: [0,1]
         }
       },
       {
@@ -61,6 +65,7 @@ export const routes: Routes = [
         component: ListComponent,
         data: {
           name: '员工管理',
+	        type: [0,1],
           menu: true
         }
       },
@@ -68,7 +73,8 @@ export const routes: Routes = [
         path: 'add',
         component: AddComponent,
         data: {
-          name: '添加用户'
+          name: '添加用户',
+	        type: [0,1]
         }
       },
       {
@@ -76,6 +82,7 @@ export const routes: Routes = [
         component: DealersListComponent,
         data: {
           name: '经销商管理',
+	        type: [0,1],
           menu: true
         }
       },
@@ -83,7 +90,8 @@ export const routes: Routes = [
         path: 'dealers/add',
         component: DealersAddComponent,
         data: {
-          name: '添加经销商用户'
+          name: '添加经销商用户',
+	        type: [0,1]
         }
       },
 
@@ -92,6 +100,7 @@ export const routes: Routes = [
         component: SalaryComponent,
         data: {
           name: '工资计算',
+	        type: [0,1],
           menu: true
         }
 
