@@ -25,7 +25,7 @@
     </table>
     <div class="pageBox">
       <el-pagination *ngIf="total" [total]="total"
-                     [page-size]="20"
+                     [(page-size)]="pageSize"
                      [(model)]="pageNum"
                      (modelChange)="getList()"
                      [layout]="['prev', 'pager', 'next', 'jumper', 'total']">

@@ -11,6 +11,7 @@ export class ColorListComponent implements OnInit {
   list = [];
   total = 0;
   pageNum = 1;
+	pageSize =10;
   loading = false;
 
   constructor(private colorService: ColorService,
@@ -26,7 +27,7 @@ export class ColorListComponent implements OnInit {
     (this.colorService as any).list({
       params: {
         params2: this.pageNum,
-        params3: 10
+        params3: this.pageSize
       }
     })
       .then(response => {

@@ -12,6 +12,7 @@ export class DoorComponent implements OnInit {
   list = [];
   total = 0;
   pageNum = 1;
+	pageSize =10;
 
   constructor(private doorService: DoorService,
               private router: Router) {
@@ -26,7 +27,7 @@ export class DoorComponent implements OnInit {
     (this.doorService as any).list({
       params: {
         params2: this.pageNum,
-        params3: 10
+        params3: this.pageSize
       },
       data: {}
     }, {})

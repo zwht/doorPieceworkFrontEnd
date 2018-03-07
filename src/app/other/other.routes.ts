@@ -1,6 +1,7 @@
 import {RouterModule, Routes} from '@angular/router';
 import {NgModule} from '@angular/core';
-import {SalaryComponent} from './salary/salary.component';
+import {CodeListComponent} from './code-list/code-list.component';
+import {CodeAddComponent} from './code-add/code-add.component';
 const routes: Routes = [
   {
     path: '',
@@ -8,14 +9,21 @@ const routes: Routes = [
       name: '其他'
     },
     children: [
-      {
-        path: 'salary',
-        component: SalaryComponent,
-        data: {
-          name: '工资管理',
-          menu: true
-        }
-      }
+	    {
+		    path: 'code',
+		    component: CodeListComponent,
+		    data: {
+			    name: '码管理',
+			    menu: true
+		    }
+	    },
+	    {
+		    path: 'code/add',
+		    component: CodeAddComponent,
+		    data: {
+			    name: '码添加'
+		    }
+	    }
     ]
   }
 
@@ -29,5 +37,5 @@ const routes: Routes = [
 
 export class OtherRoutes {
 }
-export const OtherComponents = [SalaryComponent];
+export const OtherComponents = [CodeAddComponent,CodeListComponent];
 export const OtherList = routes;

@@ -1,4 +1,4 @@
-<div class="colorList viewBox">
+<div class="codeList viewBox">
   <div class="zwSearch">
     <div class="right">
       <el-button (click)="add(0)" size="mini" type="primary">添加</el-button>
@@ -10,15 +10,15 @@
     </div>
     <table class="zwTable">
       <tr>
+        <th>分类</th>
         <th>名称</th>
-        <th>图片</th>
+        <th>码值</th>
         <th>操作</th>
       </tr>
       <tr *ngFor="let item of list let i=index">
+        <td>{{item.type}}</td>
         <td>{{item.name}}</td>
-        <td>
-          <img width="100"  [src]="item.img" alt="">
-        </td>
+        <td>{{item.value}}</td>
         <td style="width: 180px; text-align: center;">
           <el-button (click)="del(item.id)" size="mini" type="warning" icon="delete" [plain]="true">删除</el-button>
           <el-button (click)="add(item)" size="mini" type="success" icon="edit" [plain]="true">编辑</el-button>

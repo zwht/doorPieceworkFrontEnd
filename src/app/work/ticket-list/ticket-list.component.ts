@@ -18,6 +18,7 @@ export class TicketListComponent implements OnInit {
   pageNum = 1;
 	state =[];
 	stateKey=1;
+	pageSize=10;
 
   constructor(private ticketService: TicketService,
               private userService: UserService,
@@ -73,7 +74,7 @@ export class TicketListComponent implements OnInit {
     (this.ticketService as any).list({
       params: {
         params2: this.pageNum,
-        params3: 10
+        params3: this.pageSize
       },
 	    data:{state:this.state}
     })

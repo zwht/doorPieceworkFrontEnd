@@ -11,6 +11,7 @@ export class DealersListComponent implements OnInit {
   list = [];
   total = 0;
   pageNum = 1;
+	pageSize =10;
   loading = false;
 
   constructor(private userService: UserService,
@@ -30,7 +31,7 @@ export class DealersListComponent implements OnInit {
     (this.userService as any).list({
       params: {
         params2: this.pageNum,
-        params3: 10
+        params3: this.pageSize
       },
       data:{
         roles:3

@@ -11,6 +11,7 @@ export class LineListComponent implements OnInit {
   list = [];
   total = 0;
   pageNum = 1;
+	pageSize = 10;
   loading = false;
 
   constructor(private lineService: LineService,
@@ -26,7 +27,7 @@ export class LineListComponent implements OnInit {
     (this.lineService as any).list({
       params: {
         params2: this.pageNum,
-        params3: 10
+        params3: this.pageSize
       }
     })
       .then(response => {

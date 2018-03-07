@@ -7,9 +7,10 @@ import {ZwHttpInterceptor} from './service/ZwHttpInterceptor';
 import {HttpClientModule, HTTP_INTERCEPTORS} from '@angular/common/http';
 import {HttpServer} from './service/HttpServer';
 import {DateSet} from './service/DateSet';
+import {SetCodeService} from './service/set-code.service';
 import {EssenceNg2PrintModule} from "essence-ng2-print";
 import { TicketStatePipe } from './pipe/ticket-state.pipe';
-
+import {CodeService} from './restService/CodeService';
 @NgModule({
   imports: [
     CommonModule,
@@ -20,6 +21,8 @@ import { TicketStatePipe } from './pipe/ticket-state.pipe';
   exports: [CropperImgComponent,EssenceNg2PrintModule,TicketStatePipe],
   providers: [
     DateSet,
+	  SetCodeService,
+	  CodeService,
     HttpServer,
     {
       provide: HTTP_INTERCEPTORS,

@@ -17,6 +17,7 @@ export class TicketListDealersComponent implements OnInit {
 	userList = {};
 	total = 0;
 	pageNum = 1;
+	pageSize =10;
 	state = [];
 	stateKey=1;
 
@@ -81,7 +82,7 @@ export class TicketListDealersComponent implements OnInit {
 		(this.ticketService as any).list({
 			params: {
 				params2: this.pageNum,
-				params3: 10
+				params3: this.pageSize
 			},
 			data: {state: this.state}
 		})

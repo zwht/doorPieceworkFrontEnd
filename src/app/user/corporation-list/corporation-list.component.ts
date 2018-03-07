@@ -11,6 +11,7 @@ export class CorporationListComponent implements OnInit {
   list = [];
   total = 0;
   pageNum = 1;
+	pageSize =10;
   loading = false;
 
   constructor(private corporationService: CorporationService,
@@ -26,7 +27,7 @@ export class CorporationListComponent implements OnInit {
     (this.corporationService as any).list({
       params: {
         params2: this.pageNum,
-        params3: 10
+        params3: this.pageSize
       }
     })
       .then(response => {

@@ -5,11 +5,12 @@ import {AuthService} from '../../../common/restService/AuthService';
 import {CorporationService} from '../../../common/restService/CorporationService';
 import {Md5} from "ts-md5/dist/md5";
 import { ElMessageService } from 'element-angular'
+import {SetCodeService} from '../../../common/service/set-code.service';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.less'],
-  providers: [AuthService,CorporationService]
+  providers: [AuthService,CorporationService,SetCodeService]
 })
 
 export class LoginComponent implements OnInit {
@@ -21,7 +22,8 @@ export class LoginComponent implements OnInit {
   constructor(private router: Router,
               private corporationService:CorporationService,
               private message: ElMessageService,
-              private authService: AuthService) {
+              private authService: AuthService,
+              private setCodeService:SetCodeService) {
   }
 
   ngOnInit() {
@@ -32,6 +34,7 @@ export class LoginComponent implements OnInit {
         that.onLogin()
       }
     });**/
+    this.setCodeService.getAll();
   }
 
   getCorporationById(id) {
