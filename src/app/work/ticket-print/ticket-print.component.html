@@ -2,17 +2,23 @@
   <div class="zwSearch">
     <div class="right">
       <essence-ng2-print
-        [mode]="'popup'"
-        [popTitle]="''"
-        [btnText]="'打印'"
-        [btnClass]="{'btn': true, 'btn-info': true}"
-        [printHTML]="print_div"
-        [printStyle]="printStyle"
-        [printCSS]="printCSS"
-        [showBtn]="printBtnBoolean"
-        (click)="beforePrint()"
-        (printComplete)="printComplete()">
+          [mode]="'popup'"
+          [popTitle]="''"
+          [btnText]="'打印'"
+          [btnClass]="{'btn': true, 'btn-info': true}"
+          [printHTML]="print_div"
+          [printStyle]="printStyle"
+          [printCSS]="printCSS"
+          [showBtn]="printBtnBoolean"
+          (click)="beforePrint()"
+          (printComplete)="printComplete()">
       </essence-ng2-print>
+      <span *ngIf="stateKey==2&&ticket.state<1050">
+        <el-button (click)="saveOver(1050)" size="mini" type="primary">生产完成</el-button>
+      </span>
+      <span *ngIf="stateKey==2&&ticket.state<1065&&ticket.state>=1050">
+        <el-button (click)="saveOver(1065)" size="mini" type="primary">收款完成</el-button>
+      </span>
     </div>
   </div>
   <div class="tableBox viewMain" #print_div>

@@ -29,12 +29,14 @@
         <td *ngIf="stateKey==3">{{item.overTime| date:'yyyy年MM月dd日'}}</td>
         <td>{{item.address}}</td>
         <td class="el-tag-box">
-          <el-tag type="success">{{item.state | ticketState}}</el-tag>
+          <el-tag type="success">{{item.state | codeName}}</el-tag>
         </td>
         <td style="width: 360px; text-align: center;">
-          <el-button *ngIf="stateKey==1" (click)="del(item.id)" size="mini" type="warning" icon="delete" [plain]="true">删除</el-button>
-          <el-button *ngIf="stateKey==1" (click)="add(item)" size="mini" type="success" icon="edit" [plain]="true">编辑</el-button>
+          <el-button *ngIf="item.state<1015" (click)="del(item.id)" size="mini" type="warning" icon="delete" [plain]="true">删除</el-button>
+          <el-button *ngIf="item.state<1015" (click)="add(item)" size="mini" type="success" icon="edit" [plain]="true">编辑</el-button>
+          <el-button *ngIf="item.state>=1015" (click)="see(item)" size="mini" type="success"  [plain]="true">查看</el-button>
           <el-button (click)="print(item)" size="mini" type="info"  [plain]="true">打印</el-button>
+
         </td>
       </tr>
     </table>

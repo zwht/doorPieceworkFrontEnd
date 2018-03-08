@@ -11,14 +11,15 @@ import {SetCodeService} from './service/set-code.service';
 import {EssenceNg2PrintModule} from "essence-ng2-print";
 import { TicketStatePipe } from './pipe/ticket-state.pipe';
 import {CodeService} from './restService/CodeService';
+import { CodeNamePipe } from './pipe/code-name.pipe';
 @NgModule({
   imports: [
     CommonModule,
     HttpClientModule,
     ElModule.forRoot()
   ],
-  declarations: [CropperImgComponent, TicketStatePipe],
-  exports: [CropperImgComponent,EssenceNg2PrintModule,TicketStatePipe],
+  declarations: [CropperImgComponent, TicketStatePipe, CodeNamePipe],
+  exports: [CropperImgComponent,EssenceNg2PrintModule,TicketStatePipe,CodeNamePipe],
   providers: [
     DateSet,
 	  SetCodeService,

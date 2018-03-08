@@ -39,7 +39,7 @@ export class TicketAddComponent implements OnInit {
 		overTime: null,
 		processIds: null,
 		corporationId: null,
-		state: 0,
+		state: 1010,
 		number: 0,
 		pay: null,
 		sumDoor: null,
@@ -371,6 +371,7 @@ export class TicketAddComponent implements OnInit {
 		ticket.endTime = this.dateSet.getDate(ticket.endTime);
 
 		if (this.ticket.id) {
+			ticket.state=1010;
 			(this.ticketService as any).update({data: ticket})
 				.then(response => {
 					const rep = (response as any);
@@ -380,7 +381,7 @@ export class TicketAddComponent implements OnInit {
 						this.saveProcess();
 						this.message.success(rep.data);
 						if(key){
-							this.ticketService['updateState']({params: {id: this.ticket.id,state:230}})
+							this.ticketService['updateState']({params: {id: this.ticket.id,state:1015}})
 								.then(response => {
 									this.toggle = false;
 								})

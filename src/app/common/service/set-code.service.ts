@@ -3,12 +3,22 @@ import {CodeService} from '../restService/CodeService';
 
 @Injectable()
 export class SetCodeService {
-	private allList = [];
+	private list = [];
+	private codeObj = {};
 
-	constructor(private codeService:CodeService) {
+	constructor(private codeService: CodeService) {
+		this.getLocalStorageData();
+
 	}
-
-	getAll() {
+	getLocalStorageData(){
+		if (!this.list.length && localStorage.getItem('codeLost')) this.list = JSON.parse(localStorage.getItem('codeLost'));
+		if(!this.list.length){
+			this.init();
+		}else{
+			this.initData();
+		}
+	}
+	init() {
 		(this.codeService as any).list({
 			params: {
 				params2: 1,
@@ -18,13 +28,19 @@ export class SetCodeService {
 			.then(response => {
 				const rep = (response as any);
 				if (rep.code === 200) {
-					this.allList = response.data.data;
-					this.allList.forEach(item=>{
-
-					})
+					this.list = response.data.data;
+					this.initData();
+					localStorage.setItem('codeList', JSON.stringify(this.list));
 				} else {
 					console.log(response);
 				}
 			});
+	}
+
+	initData(){
+		this.codeObj={};
+		this.list.forEach(item => {
+			this.codeObj[item.value]=item.name;
+		})
 	}
 }

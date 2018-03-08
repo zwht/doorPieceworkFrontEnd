@@ -57,11 +57,11 @@ import {MenuComponent} from './component/menu/menu.component';
               menu: true
             }
           },
-          /*{
+          {
             path: 'other',
             loadChildren: 'app/other/other.module#OtherModule',
             data: {name: '其他', menu: true}
-          },*/
+          },
         ]
       },
       {

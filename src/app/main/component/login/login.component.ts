@@ -34,7 +34,7 @@ export class LoginComponent implements OnInit {
         that.onLogin()
       }
     });**/
-    this.setCodeService.getAll();
+
   }
 
   getCorporationById(id) {

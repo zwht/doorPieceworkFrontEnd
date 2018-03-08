@@ -2,8 +2,8 @@
   <div class="zwSearch">
     <div class="right">
       <el-button (click)="save(0)" size="mini" type="primary">保存</el-button>
-      <el-button (click)="print()" size="mini" type="primary">打印页面</el-button>
-      <el-button (click)="toggle=true" size="mini" type="primary">提交开始生产</el-button>
+      <el-button *ngIf="ticket.id" (click)="print()" size="mini" type="primary">打印页面</el-button>
+      <el-button *ngIf="ticket.id" (click)="toggle=true" size="mini" type="primary">提交开始生产</el-button>
     </div>
   </div>
   <div class="tableBox viewMain">
@@ -31,9 +31,7 @@
         </td>
 
         <td>订单编号</td>
-        <td colspan="5">
-          <el-input [(model)]="ticket.name" placeholder=""></el-input>
-        </td>
+        <td colspan="5">{{ticket.name}}</td>
       </tr>
       <tr>
         <td colspan="2">地址</td>

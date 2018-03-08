@@ -36,6 +36,7 @@ export class TicketPrintComponent implements OnInit {
     cartype:null
 
   };
+	stateKey=1;
 
 
 
@@ -139,7 +140,19 @@ export class TicketPrintComponent implements OnInit {
     this.getColorList(init);
     this.getLineList(init);
 
+	  if(this.router.url.indexOf('/admin/work/ticket/print')!=-1){
+		  this.stateKey=1;
+	  }
+	  if(this.router.url.indexOf('/admin/work/ticket/see')!=-1){
+		  this.stateKey=2;
+	  }
   }
+	saveOver(key){
+		this.ticketService['updateState']({params: {id: this.ticket.id, state: key}})
+			.then(response => {
+				this.ticket.state=key;
+			});
+	}
 
   printComplete() {
     this.printBtnBoolean = true;
@@ -210,6 +223,7 @@ export class TicketPrintComponent implements OnInit {
 
 
           });
+          debugger
         }
       })
   }

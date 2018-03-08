@@ -29,16 +29,24 @@ export class TicketListDealersComponent implements OnInit {
 	ngOnInit() {
 		switch (this.router.url) {
 			case '/admin/work/dealers':
-				this.state = [200];
+				this.state = [1000];
 				this.stateKey=1;
 				break;
 			case '/admin/work/dealers/submit':
-				this.state = [210,220,230,800,810,820];
+				this.state = [1005,1010];
 				this.stateKey=2;
 				break;
-			case '/admin/work/dealers/finish':
-				this.state = [830];
+			case '/admin/work/dealers/production':
+				this.state = [1015,1050,1055,1060];
 				this.stateKey=3;
+				break;
+			case '/admin/work/dealers/finish':
+				this.state = [1065];
+				this.stateKey=4;
+				break;
+			case '/admin/work/dealers/all':
+				this.state = [];
+				this.stateKey=5;
 				break;
 		}
 		this.getUser()
@@ -46,7 +54,7 @@ export class TicketListDealersComponent implements OnInit {
 	}
 
 	submit(id) {
-		this.ticketService['updateState']({params: {id: id, state: 210}})
+		this.ticketService['updateState']({params: {id: id, state: 1005}})
 			.then(response => {
 				this.getList();
 			})

@@ -40,7 +40,7 @@ export class TicketAddDealersComponent implements OnInit {
 		overTime: null,
 		processIds: null,
 		corporationId: null,
-		state: 200,
+		state: 1000,
 		number: 0,
 		pay: null,
 		sumDoor:null,
@@ -374,7 +374,7 @@ export class TicketAddDealersComponent implements OnInit {
 
 	}
 	saveState(){
-		this.ticketService['updateState']({params:{id:this.ticket.id,state:210}})
+		this.ticketService['updateState']({params:{id:this.ticket.id,state:1005}})
 			.then(response=>{
 				this.toggle=false;
 			})
