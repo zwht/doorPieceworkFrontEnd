@@ -21,6 +21,7 @@ export class TicketListDealersComponent implements OnInit {
 	state = [];
 	stateKey=1;
 
+
 	constructor(private ticketService: TicketService,
 	            private userService: UserService,
 	            private router: Router) {

@@ -46,6 +46,26 @@ export class TicketAddComponent implements OnInit {
 		sumTaoban: null,
 		sumLine: null
 	};
+	emptyTicket = {
+		id: null,
+		name: null,
+		dealersId: localStorage.getItem('userId'),
+		brandId: 1,
+		odd: null,
+		address: null,
+		startTime: null,
+		endTime: null,
+		createTime: null,
+		overTime: null,
+		processIds: null,
+		corporationId: null,
+		state: 1000,
+		number: 0,
+		pay: null,
+		sumDoor:null,
+		sumTaoban:null,
+		sumLine:null
+	};
 	emptyProduct = {
 		id: null,
 		name: null,
@@ -136,18 +156,23 @@ export class TicketAddComponent implements OnInit {
 
 	ngOnInit() {
 		const thant = this;
+		//监听参数变化
+		this.activatedRoute.queryParams.subscribe((params: Params) => {
+			if (params['id']) {
+				this.ticket.id = params['id'];
+			}else{
+				this.ticket=JSON.parse(JSON.stringify(this.emptyTicket));
+				this.productList = [JSON.parse(JSON.stringify(this.emptyDoor))];
+				this.calculate();
+			}
+		});
 
 		function init() {
 			thant.getDataKey++;
-			if (thant.getDataKey == 4) {
-				thant.activatedRoute.queryParams.subscribe((params: Params) => {
-					thant.ticket.id = params['id'];
-					if (thant.ticket.id) {
-						thant.getById();
-						thant.getProductList();
-						thant.getProcessList();
-					}
-				});
+			if (thant.getDataKey == 4&&thant.ticket.id) {
+				thant.getById();
+				thant.getProductList();
+				thant.getProcessList();
 			}
 		}
 
