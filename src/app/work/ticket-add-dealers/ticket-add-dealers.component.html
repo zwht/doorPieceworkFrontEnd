@@ -12,7 +12,7 @@
   <div class="tableBox viewMain">
     <table cellspacing="0">
       <tr>
-        <td colspan="2">经销商</td>
+        <td colspan="2" style="width: 100px !important;">经销商</td>
         <td>{{dealersName}}</td>
 
         <td>品牌名称</td>
@@ -31,7 +31,7 @@
         </td>
       </tr>
       <tr>
-        <td colspan="2">收货地址</td>
+        <td colspan="2"  style="width: 100px;">收货地址</td>
         <td colspan="3">
           <el-input [(model)]="ticket.address" placeholder=""></el-input>
         </td>
@@ -60,7 +60,9 @@
         <td rowspan="2">颜色</td>
         <td rowspan="2">线条款式</td>
         <td rowspan="2">线条数量</td>
-        <td rowspan="2">备注</td>
+        <td rowspan="2">
+          <div class="bzBox">备注</div>
+        </td>
         <td rowspan="2" style="width: 150px;">
           操作
           <el-button size="mini" type="primary" icon="plus" (click)="addDoor()"></el-button>
@@ -68,9 +70,11 @@
       </tr>
       <tr>
         <td class="s30">
-          <span>高</span>
-          <span>宽</span>
-          <span>厚</span>
+          <div>
+            <span>高</span>
+            <span>宽</span>
+            <span>厚</span>
+          </div>
         </td>
         <td class="s50">
           <span>高</span>

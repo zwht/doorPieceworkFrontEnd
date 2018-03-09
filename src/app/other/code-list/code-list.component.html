@@ -1,10 +1,13 @@
 <div class="codeList viewBox">
   <div class="zwSearch">
     <div class="right">
-      <el-button (click)="add(0)" size="mini" type="primary">添加</el-button>
+      <button (click)="add(0)" nz-button nzType="primary">添加</button>
     </div>
   </div>
-  <div class="viewMain" [el-loading]="loading" [text]="'拼命加载中'">
+  <div class="viewMain">
+    <nz-spin *ngIf="loading" [nzTip]="'拼命加载中...'" [nzSize]="'large'">
+
+    </nz-spin>
     <div class="noData" *ngIf="!list.length">
       <span>没有数据...</span>
     </div>
@@ -20,18 +23,23 @@
         <td>{{item.name}}</td>
         <td>{{item.value}}</td>
         <td style="width: 180px; text-align: center;">
-          <el-button (click)="del(item.id)" size="mini" type="warning" icon="delete" [plain]="true">删除</el-button>
-          <el-button (click)="add(item)" size="mini" type="success" icon="edit" [plain]="true">编辑</el-button>
+          <button (click)="del(item.id)" nz-button nzType="danger">
+            <i class="anticon anticon-close"></i>
+            删除
+          </button>
+          <button (click)="add(item)" nz-button nzType="primary">
+            <i class="anticon anticon-edit"></i>
+            编辑
+          </button>
         </td>
       </tr>
     </table>
     <div class="pageBox">
-      <el-pagination *ngIf="total" [total]="total"
-                     [(page-size)]="pageSize"
-                     [(model)]="pageNum"
-                     (modelChange)="getList()"
-                     [layout]="['prev', 'pager', 'next', 'jumper', 'total']">
-      </el-pagination>
+      <nz-pagination [(nzPageIndex)]="pageNum" [nzTotal]="total"
+                     [(nzSize)]="pageSize" (click)="getList()"
+                     nzShowQuickJumper nzShowTotal>
+
+      </nz-pagination>
     </div>
   </div>
 </div>

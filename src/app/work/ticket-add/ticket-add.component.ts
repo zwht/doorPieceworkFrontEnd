@@ -188,6 +188,10 @@ export class TicketAddComponent implements OnInit {
 		this.calculate();
 	}
 
+	verify(){
+
+	}
+
 	// 计算工序价格
 	calculate() {
 		this.gxList.forEach(item => {

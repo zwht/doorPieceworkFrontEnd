@@ -10,7 +10,7 @@
       }
       tr{ }
       .s30{
-        span{ display: inline-block; width: 32%;}
+        span{ display: inline-block; width: 30%;}
       }
       .s50{
         span{ display: inline-block; width: 48%;}
@@ -36,16 +36,23 @@
           &:hover{opacity: 0.8;}
         }
       }
+      .bzBox{ width: 200px;}
+      /deep/input,/deep/textarea{ background: #f1f1f1; height: 30px !important;
+        padding-left: 3px !important; vertical-align: middle;}
+      /deep/.el-select{ width: 100% !important;}
     }
   }
-  .gxBox{ border-top: 1px solid #ededed; border-left: 1px solid #ededed; margin-top: 40px;
+  .gxBox{ border-left: 1px solid #ededed; margin-top: 40px;
     li{ float: left; width: 160px; padding: 10px 5px; border-bottom: 1px solid #ededed;
-      border-right: 1px solid #ededed;
+      border-right: 1px solid #ededed; border-top: 1px solid #ededed; margin-top: -1px;
       .had{ margin-bottom: 10px;
-        b{ display: inline-block; width: 70px; font-weight: bold;}
-        input{ border: 1px solid #ededed;width: 50px; display: inline-block;}
+        b{ display: inline-block; width: 60px; font-weight: bold;}
+        input{ border: 1px solid #ededed;width: 50px; display: inline-block;
+        background: #f1f1f1;
+        }
         input,span{ color: #c00;}
       }
+      /deep/input{background: #f1f1f1;}
       div{ }
     }
   }
