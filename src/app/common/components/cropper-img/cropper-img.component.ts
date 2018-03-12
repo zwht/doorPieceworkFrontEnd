@@ -51,7 +51,6 @@ export class CropperImgComponent implements OnInit {
       viewMode: 3,
       aspectRatio: this.boxStyle.width / this.boxStyle.height,
       autoCropArea: 1,
-      dragMode: 'move',
       cropBoxResizable: false,
       cropBoxMovable: false,
       crop: function (e) {
@@ -67,7 +66,6 @@ export class CropperImgComponent implements OnInit {
         const files = that.inputImage.nativeElement.files;
         let file;
 
-        debugger
         if (that.cropper && files && files.length) {
           that.dialog = true;
           file = files[0];
