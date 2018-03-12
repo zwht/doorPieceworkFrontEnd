@@ -7,10 +7,18 @@
 
     </div>
     <div class="right">
-      <el-dropdown (selected)="downChange($event)" trigger="click" [model]="rightDown">
-        <span>{{userName}}</span>
-        <i class="el-icon-setting" style="margin-right: 20px;"></i>
-      </el-dropdown>
+      <nz-dropdown>
+        <a class="ant-dropdown-link" nz-dropdown>
+          userName
+          <i class="anticon anticon-down"></i>
+        </a>
+        <ul nz-menu>
+          <li *ngFor="let item of rightDown let i=index" nz-menu-item
+              (click)="downChange(item)" )>
+            <span>{{item.label}}</span>
+          </li>
+        </ul>
+      </nz-dropdown>
     </div>
 
   </div>

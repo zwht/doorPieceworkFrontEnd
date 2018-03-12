@@ -4,8 +4,8 @@ import {LoginVo} from '../../../common/class/LoginVo';
 import {AuthService} from '../../../common/restService/AuthService';
 import {CorporationService} from '../../../common/restService/CorporationService';
 import {Md5} from "ts-md5/dist/md5";
-import { ElMessageService } from 'element-angular'
 import {SetCodeService} from '../../../common/service/set-code.service';
+import {NzMessageService} from "ng-zorro-antd";
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -21,7 +21,7 @@ export class LoginComponent implements OnInit {
 
   constructor(private router: Router,
               private corporationService:CorporationService,
-              private message: ElMessageService,
+              private message: NzMessageService,
               private authService: AuthService,
               private setCodeService:SetCodeService) {
   }

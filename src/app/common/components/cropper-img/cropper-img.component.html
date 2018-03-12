@@ -4,22 +4,18 @@
     <img  [src]="cpImg" alt="">
   </div>
   <div *ngIf="!cpImg" >
-    <el-button (click)="showDialog()"
-               [plain]="true" type="info">选择图片</el-button>
+    <button (click)="showDialog()" nz-button nzType="primary">选择图片</button>
   </div>
-
-
-  <el-dialog [(visible)]="dialog"
-             [close-on-click-modal]="false" class="">
-    <ng-template #title>
-      <span style="color: #000;">裁剪上传</span>
+  <input  #inputImage  type="file" accept="image/*" style="display: none;"/>
+  <nz-modal [nzVisible]="dialog" [nzTitle]="modalTitle" [nzContent]="modalContent" [nzFooter]="modalFooter" (nzOnCancel)="handleCancel($event)">
+    <ng-template #modalTitle>
+      裁剪上传
     </ng-template>
-    <div class="contentDialog" [ngStyle]='contentDialogStyle'>
-      <input  #inputImage  type="file" accept="image/*" style="display: none;"/>
+    <ng-template #modalContent>
       <img style="width: 100%;" #image src="./assets/images/sky-bg.jpg">
-    </div>
-    <ng-template #footer>
-      <el-button [loading]="loading" (click)="save()">保存</el-button>
     </ng-template>
-  </el-dialog>
+    <ng-template #modalFooter>
+      <button (click)="save()" nz-button nzType="primary">保存</button>
+    </ng-template>
+  </nz-modal>
 </div>
