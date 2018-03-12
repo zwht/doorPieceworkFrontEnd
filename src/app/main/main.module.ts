@@ -10,7 +10,7 @@ import {AppComponent} from './component/app/app.component';
 import {LoginComponent} from './component/login/login.component';
 import {NotFoundComponent} from './component/not-found/not-found.component';
 import {MenuComponent} from './component/menu/menu.component';
-import {NgZorroAntdModule} from "ng-zorro-antd";
+import {NgZorroAntdModule, NzModalModule} from "ng-zorro-antd";
 
 @NgModule({
   declarations: [AppComponent,LoginComponent, NotFoundComponent, MenuComponent],

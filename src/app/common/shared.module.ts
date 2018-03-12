@@ -11,7 +11,8 @@ import {EssenceNg2PrintModule} from "essence-ng2-print";
 import { TicketStatePipe } from './pipe/ticket-state.pipe';
 import {CodeService} from './restService/CodeService';
 import { CodeNamePipe } from './pipe/code-name.pipe';
-import {NgZorroAntdModule} from "ng-zorro-antd";
+import {NgZorroAntdModule, NzModalModule} from 'ng-zorro-antd';
+import { CropperImgModalComponent } from './components/cropper-img-modal/cropper-img-modal.component'
 
 @NgModule({
   imports: [
@@ -19,8 +20,14 @@ import {NgZorroAntdModule} from "ng-zorro-antd";
     CommonModule,
     HttpClientModule
   ],
-  declarations: [CropperImgComponent, TicketStatePipe, CodeNamePipe],
-  exports: [CropperImgComponent,EssenceNg2PrintModule,TicketStatePipe,CodeNamePipe],
+  declarations: [CropperImgComponent, TicketStatePipe, CodeNamePipe, CropperImgModalComponent],
+  exports: [
+  	CropperImgComponent,
+	  EssenceNg2PrintModule,
+	  TicketStatePipe,
+	  CodeNamePipe,
+	  CropperImgModalComponent
+  ],
   providers: [
     DateSet,
 	  SetCodeService,
@@ -31,7 +38,10 @@ import {NgZorroAntdModule} from "ng-zorro-antd";
       useClass: ZwHttpInterceptor,
       multi: true,
     }
-  ]
+  ],
+	entryComponents: [
+		CropperImgModalComponent
+	]
 })
 export class SharedModule {
 }

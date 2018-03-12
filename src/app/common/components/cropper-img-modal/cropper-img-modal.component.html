@@ -1,0 +1,11 @@
+<div>
+  <img style="width: 100%;" #image src="./assets/images/sky-bg.jpg">
+  <div class="customize-footer" style=" text-align: right;">
+    <button nz-button [nzType]="'primary'" [nzSize]="'large'" (click)="emitDataOutside($event)">
+      确定
+    </button>
+    <button nz-button [nzType]="'default'" [nzSize]="'large'" (click)="handleCancel()">
+      取消
+    </button>
+  </div>
+</div>
