@@ -3,7 +3,6 @@ import {NgModule} from '@angular/core';
 import {FormsModule} from '@angular/forms';
 import {HttpModule} from '@angular/http';
 import {RouterModule} from '@angular/router';
-import { ElModule } from 'element-angular';
 import {BrowserAnimationsModule, NoopAnimationsModule} from '@angular/platform-browser/animations';
 import { SharedModule } from '../common/shared.module';
 
@@ -16,7 +15,6 @@ import {NgZorroAntdModule} from "ng-zorro-antd";
 @NgModule({
   declarations: [AppComponent,LoginComponent, NotFoundComponent, MenuComponent],
   imports: [
-    ElModule.forRoot(),
 	  NgZorroAntdModule.forRoot(),
     BrowserModule,
     NoopAnimationsModule,

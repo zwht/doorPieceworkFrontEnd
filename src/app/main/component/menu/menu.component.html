@@ -9,12 +9,12 @@
     <div class="right">
       <nz-dropdown>
         <a class="ant-dropdown-link" nz-dropdown>
-          userName
+          {{userName}}
           <i class="anticon anticon-down"></i>
         </a>
         <ul nz-menu>
           <li *ngFor="let item of rightDown let i=index" nz-menu-item
-              (click)="downChange(item)" )>
+              (click)="downChange(item)">
             <span>{{item.label}}</span>
           </li>
         </ul>

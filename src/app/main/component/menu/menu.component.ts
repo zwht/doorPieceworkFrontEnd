@@ -14,7 +14,7 @@ export class MenuComponent implements OnInit {
   userName = localStorage.getItem('userName');
   routesMenu = [UserList[0], ProductList[0], WorkList[0], OtherList[0]];
   logoImg = localStorage.getItem('logoUrl')||'./assets/images/logo/logo.png';
-  rightDown: any[] = [
+  rightDown = [
     {
       value: 'my',
       label: '个人中心',
