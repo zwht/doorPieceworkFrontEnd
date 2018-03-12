@@ -11,7 +11,6 @@ import {UserService} from '../../common/restService/UserService';
 })
 export class TicketListDealersComponent implements OnInit {
 	delId = '';
-	toggle = false;
 	loading = false;
 	list = [];
 	userList = {};
@@ -119,7 +118,6 @@ export class TicketListDealersComponent implements OnInit {
 
 	del(id) {
 		this.delId = id;
-		this.toggle = true;
 	}
 
 	print(item) {
@@ -135,7 +133,6 @@ export class TicketListDealersComponent implements OnInit {
 				} else {
 					console.log(response);
 				}
-				this.toggle = false;
 			});
 	}
 

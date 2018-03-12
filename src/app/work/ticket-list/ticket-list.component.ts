@@ -11,7 +11,6 @@ import {SetCodeService} from "../../common/service/set-code.service";
 })
 export class TicketListComponent implements OnInit {
   delId='';
-  toggle=false;
   loading = false;
   list = [];
   userList= {};
@@ -111,7 +110,6 @@ export class TicketListComponent implements OnInit {
 
   del(id) {
     this.delId=id;
-    this.toggle=true;
   }
   print(item){
     this.router.navigate(['/admin/work/ticket/print'], {queryParams: {id: item.id}});
@@ -128,7 +126,6 @@ export class TicketListComponent implements OnInit {
         } else {
           console.log(response);
         }
-        this.toggle=false;
       });
   }
 

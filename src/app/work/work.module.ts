@@ -4,14 +4,16 @@ import { ElModule } from 'element-angular';
 import {WorkRoutes, WorkComponents} from './work.routes';
 import { SharedModule } from '../common/shared.module';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
+import {NgZorroAntdModule} from "ng-zorro-antd";
 @NgModule({
   imports: [
-    ElModule.forRoot(),
+	  NgZorroAntdModule,
     SharedModule,
     CommonModule,
     WorkRoutes,
 	  ReactiveFormsModule,
 	  FormsModule
+
   ],
   declarations: WorkComponents,
   providers: [],

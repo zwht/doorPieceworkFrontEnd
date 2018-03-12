@@ -19,7 +19,6 @@ import { ElMessageService } from 'element-angular'
 })
 export class TicketAddDealersComponent implements OnInit {
 	showImg=false;
-	toggle=false;
 	colorList = [];
 	colorListObj = {};
 	lineList = [];
@@ -402,7 +401,6 @@ export class TicketAddDealersComponent implements OnInit {
 	saveState(){
 		this.ticketService['updateState']({params:{id:this.ticket.id,state:1005}})
 			.then(response=>{
-				this.toggle=false;
 			})
 	}
 	getDoorList(callBack) {

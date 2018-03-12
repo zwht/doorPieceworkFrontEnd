@@ -19,7 +19,6 @@ import {ElMessageService} from 'element-angular'
 })
 export class TicketAddComponent implements OnInit {
 	showImg = false;
-	toggle = false;
 	colorList = [];
 	colorListObj = {};
 	lineList = [];
@@ -412,7 +411,7 @@ export class TicketAddComponent implements OnInit {
 						if(key){
 							this.ticketService['updateState']({params: {id: this.ticket.id,state:1015}})
 								.then(response => {
-									this.toggle = false;
+
 								})
 						}
 					} else {

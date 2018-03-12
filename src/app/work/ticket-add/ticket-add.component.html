@@ -1,9 +1,14 @@
 <div class="ticketAdd viewBox">
   <div class="zwSearch">
     <div class="right">
-      <el-button (click)="save(0)" size="mini" type="primary">保存</el-button>
-      <el-button *ngIf="ticket.id" (click)="print()" size="mini" type="primary">打印页面</el-button>
-      <el-button *ngIf="ticket.id" (click)="toggle=true" size="mini" type="primary">提交开始生产</el-button>
+      <button (click)="save(0)" nz-button nzType="primary">保存</button>
+      <button *ngIf="ticket.id" (click)="print()" nz-button nzType="primary">打印页面</button>
+      <nz-popconfirm [nzTitle]="'确定开始生产后不可修改，是否确定？'" [nzOkText]="'确定'"
+                     [nzCancelText]="'取消'"
+                     (nzOnConfirm)="saveState()">
+        <button nz-popconfirm *ngIf="ticket.id" nz-button nzType="primary">提交开始生产</button>
+      </nz-popconfirm>
+
     </div>
   </div>
   <div class="tableBox viewMain">
@@ -11,44 +16,49 @@
       <tr>
         <td colspan="2">经销商</td>
         <td>
-          <el-select [(model)]="ticket.dealersId" placeholder="请选择"
-                     (modelChange)="dealersChange($event)">
-            <el-option *ngFor="let item of userListObj[3]"
-                       [label]="item.name"
-                       [value]="item.id">
-            </el-option>
-          </el-select>
+          <nz-select [(ngModel)]="ticket.dealersId" (modelChange)="dealersChange($event)"
+                     [nzPlaceHolder]="'请选择'" nzAllowClear>
+            <nz-option *ngFor="let item of userListObj[3]"
+            [nzLabel]="item.name"
+            [nzValue]="item.id">
+            </nz-option>
+          </nz-select>
         </td>
 
         <td>品牌名称</td>
         <td>
-          <el-select [(model)]="ticket.brandId" placeholder="请选择">
-            <el-option *ngFor="let item of brandList"
-                       [label]="item.name"
-                       [value]="item.id">
-            </el-option>
-          </el-select>
+          <nz-select [(ngModel)]="ticket.brandId"
+                     [nzPlaceHolder]="'请选择'" nzAllowClear>
+            <nz-option *ngFor="let item of brandList"
+                       [nzLabel]="item.name"
+                       [nzValue]="item.id">
+            </nz-option>
+          </nz-select>
         </td>
 
         <td>订单编号</td>
         <td colspan="5">{{ticket.name}}</td>
       </tr>
       <tr>
-        <td colspan="2">地址</td>
+        <td colspan="2">收货地址</td>
         <td colspan="3">
-          <el-input [(model)]="ticket.address" placeholder=""></el-input>
+          <nz-input [(ngModel)]="ticket.address" [nzSize]="'large'" placeholder="请输入"></nz-input>
         </td>
 
         <td>订货日期</td>
         <td colspan="2">
-          <el-date-picker *ngIf="changeDate" [(model)]="ticket.startTime"
-                          [format]="'yyyy年MM月dd日'"></el-date-picker>
+          <nz-datepicker *ngIf="changeDate" [(ngModel)]="ticket.startTime"
+                         [nzFormat]="'YYYY年MM月DD日'"
+                         [nzPlaceHolder]="'请选择'">
+          </nz-datepicker>
 
         </td>
         <td>交货日期</td>
         <td colspan="2">
-          <el-date-picker *ngIf="changeDate" [(model)]="ticket.endTime"
-                          [format]="'yyyy年MM月dd日'"></el-date-picker>
+          <nz-datepicker *ngIf="changeDate" [(ngModel)]="ticket.endTime"
+                         [nzFormat]="'YYYY年MM月DD日'"
+                         [nzPlaceHolder]="'请选择'">
+          </nz-datepicker>
         </td>
       </tr>
       <tr>
@@ -66,7 +76,9 @@
         <td rowspan="2"><div class="bzBox">备注</div></td>
         <td rowspan="2" style="width: 150px;">
           操作
-          <el-button size="mini" type="primary" icon="plus" (click)="addDoor()"></el-button>
+          <button (click)="addDoor()" nz-button nzType="primary">
+            <i class="anticon anticon-edit"></i>
+          </button>
         </td>
       </tr>
       <tr>
@@ -83,12 +95,14 @@
       <tr *ngFor="let item of productList let i=index">
         <td>{{i+1}}</td>
         <td class="doorName">
-          <el-select (modelChange)="doorChange($event,item)" size="mini" [(model)]="item.doorId" placeholder="请选择">
-            <el-option *ngFor="let obj of doorList"
-                       [label]="obj.name"
-                       [value]="obj.id" >
-            </el-option>
-          </el-select>
+          <nz-select [(ngModel)]="item.doorId" (modelChange)="doorChange($event,item)"
+                     [nzPlaceHolder]="'请选择'" nzAllowClear>
+            <nz-option *ngFor="let item of doorList"
+                       [nzLabel]="item.name"
+                       [nzValue]="item.id">
+            </nz-option>
+          </nz-select>
+
           <img *ngIf="item.doorImg&&showImg" style="width: 50px;" [src]="item.doorImg" alt="">
         </td>
         <td class="input3">
@@ -120,23 +134,24 @@
           <input type="number" [(ngModel)]="item.dbSum" (ngModelChange)="sumChange()" placeholder="">
         </td>
         <td>
-          <el-select [(model)]="item.colorId" placeholder="请选择"
-                     (modelChange)="colorChange($event,item)">
-            <el-option *ngFor="let obj of colorList"
-                       [label]="obj.name"
-                       [value]="obj.id">
-            </el-option>
-          </el-select>
+          <nz-select [(ngModel)]="item.colorId" (modelChange)="colorChange($event,item)"
+                     [nzPlaceHolder]="'请选择'" nzAllowClear>
+            <nz-option *ngFor="let item of colorList"
+                       [nzLabel]="item.name"
+                       [nzValue]="item.id">
+            </nz-option>
+          </nz-select>
           <img *ngIf="item.colorImg&&showImg" style="width: 50px;" [src]="item.colorImg" alt="">
         </td>
         <td>
-          <el-select [(model)]="item.lineId" placeholder="请选择"
-                     (modelChange)="lineChange($event,item)">
-            <el-option *ngFor="let obj of lineList"
-                       [label]="obj.name"
-                       [value]="obj.id">
-            </el-option>
-          </el-select>
+          <nz-select [(ngModel)]="item.lineId" (modelChange)="lineChange($event,item)"
+                     [nzPlaceHolder]="'请选择'" nzAllowClear>
+            <nz-option *ngFor="let item of lineList"
+                       [nzLabel]="item.name"
+                       [nzValue]="item.id">
+            </nz-option>
+          </nz-select>
+
           <img *ngIf="item.lineImg&&showImg" style="width: 50px;" [src]="item.lineImg" alt="">
         </td>
         <td class="input2">
@@ -176,28 +191,16 @@
           <span>(元)</span>
         </div>
         <div>
-          <el-select size="mini" [(model)]="item.userId" placeholder="请选择">
-            <el-option *ngFor="let obj of userListObj[item.name]"
-                       [label]="obj.name"
-                       [value]="obj.id">
-            </el-option>
-          </el-select>
+          <nz-select [(ngModel)]="item.userId"
+                     [nzPlaceHolder]="'请选择'" nzAllowClear>
+            <nz-option *ngFor="let item of userListObj[item.name]"
+                       [nzLabel]="item.name"
+                       [nzValue]="item.id">
+            </nz-option>
+          </nz-select>
         </div>
       </li>
     </ul>
   </div>
-
-  <el-dialog [(visible)]="toggle" custom-class="tagBox"
-             [center]="true" [show-close]="false" [width]="'300px'">
-    <ng-template #title style="padding-top: 10px;">
-      <span class="el-icon-warning"></span>
-      <span>确定完成</span>
-    </ng-template>
-    <div>确定开始生产后不可修改，是否确定？</div>
-    <ng-template #footer style="padding-bottom: 10px;">
-      <el-button (click)="toggle=false" [plain]="true" type="info" size="small">取&nbsp;&nbsp;&nbsp;&nbsp;消</el-button>
-      <el-button (click)="saveState()" [plain]="true" type="success" size="small">确&nbsp;&nbsp;&nbsp;&nbsp;定</el-button>
-    </ng-template>
-  </el-dialog>
 
 </div>
