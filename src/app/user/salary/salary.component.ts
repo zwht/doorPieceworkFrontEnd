@@ -9,12 +9,10 @@ import {DateSet} from '../../common/service/DateSet';
   providers: [ProcessService]
 })
 export class SalaryComponent implements OnInit {
-  search={
-    startTime:(new Date()).getTime()-86400000*30,
-    endTime:(new Date()).getTime(),
-  };
-  startTime=this.search.startTime;
-  endTime=this.search.endTime;
+  search=[(new Date()).getTime()-86400000*30,(new Date()).getTime()];
+
+  startTime=this.search[0];
+  endTime=this.search[1];
   list = [];
   total = 0;
   pageSize=20;
@@ -34,8 +32,8 @@ export class SalaryComponent implements OnInit {
 
   getList() {
     this.loading = true;
-    this.startTime=this.dateSet.getDate1(this.search.startTime);
-    this.endTime=this.dateSet.getDate1(this.search.endTime)+86400000;
+    this.startTime=this.dateSet.getDate1(this.search[0]);
+    this.endTime=this.dateSet.getDate1(this.search[1])+86400000;
     (this.processService as any).salary({
       params: {
         params2: this.pageNum,

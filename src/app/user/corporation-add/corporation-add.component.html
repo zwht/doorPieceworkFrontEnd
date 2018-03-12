@@ -10,11 +10,13 @@
     <div class="addFrom">
       <div>
         <span>公司名称：</span>
-        <el-input [(ngModel)]="component.name" placeholder="请输入"></el-input>
+        <nz-input [(ngModel)]="component.name"
+                  [nzSize]="'large'" placeholder="请输入"></nz-input>
       </div>
       <div>
         <span>地&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;址：</span>
-        <el-input [(ngModel)]="component.address" placeholder="请输入"></el-input>
+        <nz-input [(ngModel)]="component.address"
+                  [nzSize]="'large'" placeholder="请输入"></nz-input>
       </div>
       <div>
         <span>添加logo：</span>
@@ -22,7 +24,7 @@
                          (saveEnd)="imageChange($event)"></app-cropper-img>
       </div>
       <br>
-      <el-button (click)="save()" [plain]="true" type="success">保存</el-button>
+      <button (click)="save()" nz-button nzType="primary">保存</button>
     </div>
   </div>
 </div>

@@ -1,10 +1,12 @@
 <div class="userList viewBox">
   <div class="zwSearch">
     <div class="right">
-      <el-button (click)="add(0)" size="mini" type="primary">添加</el-button>
+      <button (click)="add(0)" nz-button nzType="primary">添加</button>
     </div>
   </div>
-  <div class="viewMain"  [el-loading]="loading" [text]="'拼命加载中'">
+  <div class="viewMain">
+    <nz-spin *ngIf="loading" [nzTip]="'拼命加载中...'" [nzSize]="'large'">
+    </nz-spin>
     <div class="noData" *ngIf="!list.length">
       <span>没有数据...</span>
     </div>
@@ -26,20 +28,21 @@
         </th>
         <td>{{item.address}}</td>
         <td style="width: 280px; text-align: center;">
-          <el-button (click)="add(item)" size="mini" type="success" icon="edit" [plain]="true">查看用户</el-button>
-          <el-button *ngIf="item.state==1" (click)="updateState(item,0)" size="mini" type="warning" icon="delete" [plain]="true">禁用</el-button>
-          <el-button *ngIf="item.state==0" (click)="updateState(item,1)" size="mini" type="primary" icon="delete" [plain]="true">起用</el-button>
-          <el-button (click)="add(item)" size="mini" type="success" icon="edit" [plain]="true">编辑</el-button>
+          <button (click)="add(item)" nz-button nzType="primary">查看用户</button>
+          <button (click)="updateState(item,0)" *ngIf="item.state==1"
+                  nz-button nzType="primary">禁用</button>
+          <button (click)="updateState(item,1)" *ngIf="item.state==0"
+                  nz-button nzType="primary">起用</button>
+          <button (click)="add(item)" nz-button nzType="primary">编辑</button>
         </td>
       </tr>
     </table>
     <div class="pageBox">
-      <el-pagination *ngIf="total" [total]="total"
-                     [(page-size)]="pageSize"
-                     [(model)]="pageNum"
-                     (modelChange)="getList()"
-                     [layout]="['prev', 'pager', 'next', 'jumper', 'total']">
-      </el-pagination>
+      <nz-pagination [(nzPageIndex)]="pageNum" [nzTotal]="total"
+                     [(nzSize)]="pageSize" (click)="getList()"
+                     nzShowQuickJumper nzShowTotal>
+
+      </nz-pagination>
     </div>
   </div>
 </div>

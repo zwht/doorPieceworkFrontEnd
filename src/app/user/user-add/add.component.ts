@@ -55,10 +55,6 @@ export class AddComponent implements OnInit {
       });
   }
 
-  handle(event: any): void {
-    this.user.type = event;
-  }
-
   getGxList() {
     (this.gxService as any).list({
       params: {
