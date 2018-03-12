@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {CorporationService} from '../../common/restService/CorporationService';
 import {Router, ActivatedRoute, Params} from '@angular/router';
-import { ElMessageService } from 'element-angular'
+import {NzMessageService} from "ng-zorro-antd";
 @Component({
   selector: 'app-corporation-add',
   templateUrl: './corporation-add.component.html',
@@ -20,7 +20,7 @@ export class CorporationAddComponent implements OnInit {
 
   constructor(private corporationService: CorporationService,
               private router: Router,
-              private message: ElMessageService,
+              private message: NzMessageService,
               private activatedRoute: ActivatedRoute) {
   }
 

@@ -2,13 +2,13 @@ import {NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
 import {FormsModule} from '@angular/forms';
 import {ProductRoutes, ProductComponents} from './product.routes';
-import {ElModule} from 'element-angular';
 import { SharedModule } from '../common/shared.module';
+import {NgZorroAntdModule} from "ng-zorro-antd";
 
 @NgModule({
   imports: [
+	  NgZorroAntdModule,
     SharedModule,
-    ElModule.forRoot(),
     FormsModule,
     CommonModule,
     ProductRoutes

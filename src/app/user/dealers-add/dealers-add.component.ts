@@ -3,7 +3,7 @@ import {UserService} from '../../common/restService/UserService';
 import {GxService} from '../../common/restService/GxService';
 import {Router, ActivatedRoute, Params} from '@angular/router';
 import {Md5} from "ts-md5/dist/md5";
-import { ElMessageService } from 'element-angular'
+import {NzMessageService} from "ng-zorro-antd";
 @Component({
   selector: 'app-dealers-add',
   templateUrl: './dealers-add.component.html',
@@ -28,7 +28,7 @@ export class DealersAddComponent implements OnInit {
   constructor(private userService: UserService,
               private gxService: GxService,
               private router: Router,
-              private message: ElMessageService,
+              private message: NzMessageService,
               private activatedRoute: ActivatedRoute) {
   }
 

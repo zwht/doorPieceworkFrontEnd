@@ -9,7 +9,7 @@ import {LineService} from '../../common/restService/LineService';
 import {ProductService} from '../../common/restService/ProductService';
 import {ProcessService} from '../../common/restService/ProcessService';
 import {DateSet} from '../../common/service/DateSet';
-import {ElMessageService} from 'element-angular'
+import {NzMessageService} from "ng-zorro-antd";
 
 @Component({
 	selector: 'app-ticket-add',
@@ -147,7 +147,7 @@ export class TicketAddComponent implements OnInit {
 	            private productService: ProductService,
 	            private processService: ProcessService,
 	            private router: Router,
-	            private message: ElMessageService,
+	            private message: NzMessageService,
 	            private dateSet: DateSet,
 	            private userService: UserService,
 	            private activatedRoute: ActivatedRoute) {

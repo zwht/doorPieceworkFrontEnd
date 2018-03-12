@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import {UserService} from '../../common/restService/UserService';
-import { ElMessageService } from 'element-angular'
 import {Md5} from "ts-md5/dist/md5";
+import {NzMessageService} from "ng-zorro-antd";
+
 @Component({
   selector: 'app-detail',
   templateUrl: './detail.component.html',
@@ -22,7 +23,7 @@ export class DetailComponent implements OnInit {
   };
   constructor(
     private userService:UserService,
-    private message: ElMessageService,
+    private message: NzMessageService,
   ) { }
 
   ngOnInit() {

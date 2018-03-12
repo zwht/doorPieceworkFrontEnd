@@ -10,11 +10,13 @@
     <div class="addFrom">
       <div>
         <span>名称：</span>
-        <el-input [(model)]="gx.name" placeholder="请输入" type="text"></el-input>
+        <nz-input [(ngModel)]="gx.name"
+                  [nzSize]="'large'" placeholder="请输入"></nz-input>
       </div>
       <div>
         <span>价格：</span>
-        <el-input [(model)]="gx.price"  placeholder="请输入" type="text"></el-input>
+        <nz-input [(ngModel)]="gx.price"
+                  [nzSize]="'large'" placeholder="请输入"></nz-input>
       </div>
       <!--<div>
         <span>类型：</span>
@@ -27,10 +29,11 @@
       </div>-->
       <div>
         <span>序号：</span>
-        <el-input [(model)]="gx.serial"  placeholder="请输入" type="text"></el-input>
+        <nz-input [(ngModel)]="gx.serial"
+                  [nzSize]="'large'" placeholder="请输入"></nz-input>
       </div>
       <br>
-      <el-button (click)="save()" [plain]="true" type="success">保存</el-button>
+      <button (click)="save()" nz-button nzType="primary">保存</button>
     </div>
   </div>
 </div>

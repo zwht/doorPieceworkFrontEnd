@@ -10,11 +10,13 @@
     <div class="addFrom">
       <div>
         <span>名&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;称：</span>
-        <el-input [(model)]="door.name" placeholder="请输入" type="text"></el-input>
+        <nz-input [(ngModel)]="door.name"
+                  [nzSize]="'large'" placeholder="请输入"></nz-input>
       </div>
       <div>
         <span>编&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;号：</span>
-        <el-input [(model)]="door.number" placeholder="请输入" type="text"></el-input>
+        <nz-input [(ngModel)]="door.number"
+                  [nzSize]="'large'" placeholder="请输入"></nz-input>
       </div>
       <div>
         <span>添加图片：</span>
@@ -25,13 +27,16 @@
         <span>添加工序：</span>
         <ul class="ulBox">
           <li *ngFor="let item of gxList let i=index">
-            <el-checkbox [(model)]="item.active"  label="{{item.name}}" ></el-checkbox>
-            <el-input [(model)]="item.price"  type="text" size="mini" style="margin-left: 30px;"></el-input>
+            <label nz-checkbox [(ngModel)]="item.active">
+              <span>{{item.name}}</span>
+            </label>
+            <nz-input [(ngModel)]="item.price"
+                      [nzSize]="'large'" placeholder="请输入"></nz-input>
           </li>
         </ul>
       </div>
       <br>
-      <el-button (click)="save()" [plain]="true" type="success">保存</el-button>
+      <button (click)="save()" nz-button nzType="primary">保存</button>
     </div>
   </div>
 </div>
