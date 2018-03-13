@@ -1,7 +1,8 @@
 @import "../../../../assets/css/themes/default";
 .menuCpl{ height: 100%; display: flex;flex-flow: row wrap;
   >.header{ height: 50px; width: 100%; background: @color1;
-    line-height: 50px;font-size: 20px;
+    line-height: 50px; color: #fff;
+    a{ color: #fff;}
     .logo{ text-align: center; width: 200px; position: absolute; height: 50px;
       left: 0; top:0;
     }
@@ -11,7 +12,7 @@
     }
     .topMenu{ padding: 0 200px;}
   }
-  >.leftMenu{ width: 200px; background: @color1;
+  >.leftMenu{ width: 200px; background: @color1; color: #fff;
     height: 100%;/*写给不支持calc()的浏览器*/
     height:-moz-calc(~"100% - 50px");
     height:-webkit-calc(~"100% - 50px");

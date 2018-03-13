@@ -8,8 +8,6 @@ import Cropper from 'cropperjs';
 })
 export class CropperImgModalComponent implements OnInit {
 
-	blobURL: string;
-
 	@ViewChild('image')
 	image: ElementRef;
 

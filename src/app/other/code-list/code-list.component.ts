@@ -31,7 +31,7 @@ export class CodeListComponent implements OnInit {
 			}
 		})
 			.then(response => {
-				//this.loading = false;
+				this.loading = false;
 				const rep = (response as any);
 				if (rep.code === 200) {
 					this.total = response.data.pageCount;
