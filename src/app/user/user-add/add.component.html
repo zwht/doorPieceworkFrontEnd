@@ -35,7 +35,7 @@
       </div>
       <div>
         <span>类&nbsp;&nbsp;&nbsp;型：</span>
-        <nz-select [(ngModel)]="user.type" (modelChange)="handle($event)"
+        <nz-select [(ngModel)]="user.type"
                    [nzPlaceHolder]="'请选择'" nzAllowClear>
           <nz-option *ngFor="let item of gxList"
                      [nzLabel]="item.name"
