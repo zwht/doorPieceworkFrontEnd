@@ -220,10 +220,7 @@ export class TicketPrintComponent implements OnInit {
                 }
               })
             });
-
-
           });
-          debugger
         }
       })
   }
