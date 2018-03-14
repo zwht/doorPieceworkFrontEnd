@@ -40,7 +40,7 @@ export class TicketListComponent implements OnInit {
 			  this.state = [1050];
 			  this.stateKey=3;
 			  break;
-		  case '/admin/work/ticket/over':
+		  case '/admin/work/ticket/finish':
 			  this.state = [1065];
 			  this.stateKey=4;
 			  break;

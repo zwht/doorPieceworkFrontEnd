@@ -54,7 +54,7 @@ import {NgZorroAntdModule, NzModalModule} from "ng-zorro-antd";
             path: 'product',
             loadChildren: 'app/product/product.module#ProductModule',
             data: {
-              name: '产品管理',
+              name: '基础数据',
               type: [0,1],
               menu: true
             }

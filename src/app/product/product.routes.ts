@@ -13,7 +13,7 @@ const routes: Routes = [
   {
     path: '',
     data: {
-      name: '产品管理'
+      name: '基础数据'
     },
     children: [
       {
