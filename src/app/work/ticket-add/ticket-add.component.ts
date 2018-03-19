@@ -58,7 +58,7 @@ export class TicketAddComponent implements OnInit {
 		overTime: null,
 		processIds: null,
 		corporationId: null,
-		state: 1000,
+		state: 1010,
 		number: 0,
 		pay: null,
 		sumDoor:null,

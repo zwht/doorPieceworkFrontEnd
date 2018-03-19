@@ -1,12 +1,13 @@
 <div class="ticketAdd viewBox">
   <div class="zwSearch">
     <div class="right">
-      <button (click)="save(0)" nz-button nzType="primary">保存</button>
+      <button *ngIf="ticket.state<1010" (click)="save(0)" nz-button nzType="primary">审核通过</button>
+      <button *ngIf="ticket.state===1010" (click)="save(0)" nz-button nzType="primary">保存</button>
       <button *ngIf="ticket.id" (click)="print()" nz-button nzType="primary">打印页面</button>
       <nz-popconfirm [nzTitle]="'确定开始生产后不可修改，是否确定？'" [nzOkText]="'确定'"
                      [nzCancelText]="'取消'"
                      (nzOnConfirm)="saveState()">
-        <button nz-popconfirm *ngIf="ticket.id" nz-button nzType="primary">提交开始生产</button>
+        <button nz-popconfirm *ngIf="ticket.id&&ticket.state===1010" nz-button nzType="primary">提交开始生产</button>
       </nz-popconfirm>
 
     </div>

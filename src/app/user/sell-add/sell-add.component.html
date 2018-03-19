@@ -1,0 +1,40 @@
+<div class="addDoor viewBox">
+  <div class="zwSearch">
+    <div class="left">
+      <span>{{title}}</span>
+    </div>
+    <div class="right">
+    </div>
+  </div>
+  <div class="viewMain">
+    <div class="addFrom">
+      <div>
+        <span>登录名：</span>
+        <nz-input [(ngModel)]="user.loginName"
+                  [nzSize]="'large'" placeholder="请输入"></nz-input>
+      </div>
+      <div>
+        <span>真实名字：</span>
+        <nz-input [(ngModel)]="user.name"
+                  [nzSize]="'large'" placeholder="请输入"></nz-input>
+      </div>
+      <div *ngIf="!user.id">
+        <span>密&nbsp;&nbsp;&nbsp;码：</span>
+        <nz-input [(ngModel)]="user.password"
+                  [nzSize]="'large'" placeholder="请输入"></nz-input>
+      </div>
+      <div>
+        <span>手机号：</span>
+        <nz-input [(ngModel)]="user.phone"
+                  [nzSize]="'large'" placeholder="请输入"></nz-input>
+      </div>
+      <div>
+        <span>地&nbsp;&nbsp;&nbsp;址：</span>
+        <nz-input [(ngModel)]="user.address"
+                  [nzSize]="'large'" placeholder="请输入"></nz-input>
+      </div>
+      <br>
+      <button (click)="save()" nz-button nzType="primary">保存</button>
+    </div>
+  </div>
+</div>

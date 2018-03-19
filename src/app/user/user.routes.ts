@@ -8,6 +8,8 @@ import {AddComponent} from './user-add/add.component';
 import {SalaryComponent} from './salary/salary.component';
 import {DealersListComponent} from './dealers-list/dealers-list.component';
 import {DealersAddComponent} from './dealers-add/dealers-add.component';
+import {SellListComponent} from './sell-list/sell-list.component';
+import {SellAddComponent} from './sell-add/sell-add.component';
 import {AdminListComponent} from './admin-list/admin-list.component';
 import {AdminAddComponent} from './admin-add/admin-add.component';
 import {DetailComponent} from './detail/detail.component';
@@ -94,6 +96,23 @@ export const routes: Routes = [
 	        type: [0,1]
         }
       },
+	    {
+		    path: 'sell',
+		    component: SellListComponent,
+		    data: {
+			    name: '销售列表',
+			    type: [0,1],
+			    menu: true
+		    }
+	    },
+	    {
+		    path: 'sell/add',
+		    component: SellAddComponent,
+		    data: {
+			    name: '添加销售',
+			    type: [0,1]
+		    }
+	    },
 
       {
         path: 'salary',
@@ -119,6 +138,8 @@ export class UserRoutes {
 }
 
 export const UserComponents = [
+	SellAddComponent,
+	SellListComponent,
   DetailComponent,
   AdminListComponent,
   AdminAddComponent,
