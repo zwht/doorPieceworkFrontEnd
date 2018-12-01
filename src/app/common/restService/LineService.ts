@@ -6,7 +6,7 @@ import {HttpServer} from '../service/HttpServer';
 @Injectable()
 export class LineService {
 
-  url = './cfmy/line/:params1/:params2/:params3/:params4/:params5';
+  url = '/cfmy/line/:params1/:params2/:params3/:params4/:params5';
   urls = {
     add: {
       method: 'post',

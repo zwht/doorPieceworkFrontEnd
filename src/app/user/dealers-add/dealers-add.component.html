@@ -33,6 +33,17 @@
         <nz-input [(ngModel)]="user.address"
                   [nzSize]="'large'" placeholder="请输入"></nz-input>
       </div>
+      <div>
+        <span>销&nbsp;&nbsp;&nbsp;售：</span>
+        <nz-select [(ngModel)]="user.sellId"
+                   [nzPlaceHolder]="'请选择'" nzAllowClear>
+          <nz-option *ngFor="let item of sellList"
+                     [nzLabel]="item.name"
+                     [nzValue]="item.id">
+          </nz-option>
+        </nz-select>
+      </div>
+
       <br>
       <button (click)="save()" nz-button nzType="primary">保存</button>
     </div>

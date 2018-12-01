@@ -6,7 +6,7 @@ import {HttpServer} from '../service/HttpServer';
 @Injectable()
 export class FileService {
 
-  url = './cfmy/file/:params1/:params2/:params3/:params4/:params5';
+  url = '/cfmy/file/:params1/:params2/:params3/:params4/:params5';
   urls = {
     upToken: {
       method: 'get',

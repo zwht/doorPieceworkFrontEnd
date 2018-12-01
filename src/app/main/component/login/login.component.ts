@@ -51,13 +51,14 @@ export class LoginComponent implements OnInit {
       });
   }
 	_login() {
+    debugger
 		for (const i in this.validateForm.controls) {
 			this.validateForm.controls[ i ].markAsDirty();
 		}
 		if(this.validateForm.valid){
 			this.loading=true;
 			this.authService['login']({data: {
-					password:Md5.hashStr(this.validateForm.value.password).toString(),
+					password:btoa(encodeURIComponent(this.validateForm.value.password)),
 					loginName:this.validateForm.value.userName
 				}})
 				.then(response => {

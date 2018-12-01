@@ -6,7 +6,7 @@ import {HttpServer} from '../service/HttpServer';
 @Injectable()
 export class ProcessService {
 
-  url = './cfmy/process/:params1/:params2/:params3/:params4/:params5';
+  url = '/cfmy/process/:params1/:params2/:params3/:params4/:params5';
   urls = {
     add: {
       method: 'post',

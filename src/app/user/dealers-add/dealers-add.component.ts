@@ -13,6 +13,7 @@ import {NzMessageService} from "ng-zorro-antd";
 export class DealersAddComponent implements OnInit {
   title='';
   gxList = [];
+	sellList =[];
   user = {
     id: null,
     name: null,
@@ -22,7 +23,8 @@ export class DealersAddComponent implements OnInit {
     type: null,
     roles: 3,
     state: 1,
-    address: null
+    address: null,
+	  sellId:null
   };
 
   constructor(private userService: UserService,
@@ -41,7 +43,7 @@ export class DealersAddComponent implements OnInit {
 
     });
 
-    this.getGxList();
+    this.getSellList();
   }
 
   getById() {
@@ -59,22 +61,25 @@ export class DealersAddComponent implements OnInit {
     this.user.type = event;
   }
 
-  getGxList() {
-    (this.gxService as any).list({
-      params: {
-        params2: 1,
-        params3: 1000
-      }
-    })
-      .then(response => {
-        const rep = (response as any);
-        if (rep.code === 200) {
-          this.gxList = response.data.data;
-        } else {
-          console.log(response);
-        }
-      });
-  }
+	getSellList() {
+		(this.userService as any).list({
+			params: {
+				params2: 1,
+				params3: 10000
+			},
+			data:{
+				roles:5
+			}
+		})
+			.then(response => {
+				const rep = (response as any);
+				if (rep.code === 200) {
+					this.sellList = response.data.data;
+				} else {
+					console.log(response);
+				}
+			});
+	}
 
   save() {
     let user=JSON.parse(JSON.stringify(this.user));

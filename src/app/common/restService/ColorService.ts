@@ -6,7 +6,7 @@ import {HttpServer} from '../service/HttpServer';
 @Injectable()
 export class ColorService {
 
-  url = './cfmy/color/:params1/:params2/:params3/:params4/:params5';
+  url = '/cfmy/color/:params1/:params2/:params3/:params4/:params5';
   urls = {
     add: {
       method: 'post',

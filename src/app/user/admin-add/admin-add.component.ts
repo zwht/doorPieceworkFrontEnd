@@ -78,7 +78,7 @@ export class AdminAddComponent implements OnInit {
 
   save() {
     let user=JSON.parse(JSON.stringify(this.user));
-    user.password=Md5.hashStr(this.user.password);
+    user.password=btoa(encodeURIComponent(this.user.password));
     if (user.id) {
       user.password=null;
       (this.userService as any).update({data: user})
